@@ -1,5 +1,3 @@
-export const metadata = { title: "Kontak | PJTrans", description: "Informasi Kontak PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia." }
-
 "use client"
 
 import type React from "react"
@@ -317,3 +315,4 @@ export default function KontakPage() {
     </div>
   )
 }
+ 

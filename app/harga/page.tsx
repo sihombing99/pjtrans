@@ -14,12 +14,12 @@ interface VehicleData {
   startingPrice: string
   image: string
   category: string
-  services: {
-    name: string
-    price: string
-    description: string
-    //src : string
-  }[]
+  // services: {
+  //   name: string
+  //   price: string
+  //   description: string
+  //   //src : string
+  // }[]
   contactForPrice?: boolean
 }
 
@@ -29,61 +29,61 @@ export default function HargaPage() {
       id: "alphard",
       name: "Toyota Alphard",
       startingPrice: "Rp. 3.800.000",
-      image: "/image/alphard.jpg?height=1000&width=400",
+      image: "/image/Alphard.png?height=1000&width=400",
       category: "Premium",
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Rp 2.800.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Rp 2.800.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
           
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Rp 3.200.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Rp 3.200.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
         
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Rp 2.500.000",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Rp 42.000.000",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Rp 2.500.000",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Rp 42.000.000",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "innova",
       name: "Toyota Innova Zenix",
       startingPrice: "Rp. 800.000",
-      image: "/image/inova.png?height=1000&width=400",
+      image: "/image/kijang inova.png?height=1000&width=400",
       category: "MPV",
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Rp 1.100.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Rp 1.500.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Rp 650.000",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Rp 14.000.000",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Rp 1.100.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Rp 1.500.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Rp 650.000",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Rp 14.000.000",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "avanza",
@@ -91,57 +91,57 @@ export default function HargaPage() {
       startingPrice: "Rp. 500.000",
       image: "/image/avanza.png?height=1000&width=400",
       category: "City Car",
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Rp 700.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Rp 1.000.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Rp 500.000",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Rp 7.000.000",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Rp 700.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Rp 1.000.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Rp 500.000",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Rp 7.000.000",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "pajero",
       name: "Mitsubishi Pajero",
       startingPrice: "Rp. 1.300.000",
-      image: "/image/pajero.jpg?height=1000&width=400",
+      image: "/image/Pajero Sport.png?height=1000&width=400",
       category: "SUV",
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Rp 1.300.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Rp 1.500.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Rp 1.300.000",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Rp 20.500.000",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Rp 1.300.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Rp 1.500.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Rp 1.300.000",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Rp 20.500.000",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "fortuner",
@@ -149,28 +149,28 @@ export default function HargaPage() {
       startingPrice: "Rp. 1.300.000",
       image: "/image/fortuner.png?height=1000&width=400",
       category: "SUV",
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Rp 1.300.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Rp 1.500.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Rp 1.300.000",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Rp 20.500.000",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Rp 1.300.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Rp 1.500.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Rp 1.300.000",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Rp 20.500.000",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "ertiga",
@@ -178,88 +178,88 @@ export default function HargaPage() {
       startingPrice: "Rp. 550.000",
       image: "/image/ertiga.png?height=1000&width=400",
       category: "MPV",
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Rp 550.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Rp 700.000",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Rp 500.000",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Rp 7.500.000",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Rp 550.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Rp 700.000",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Rp 500.000",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Rp 7.500.000",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "landcruiser",
       name: "Toyota Land Cruiser",
       startingPrice: "Hubungi untuk harga",
-      image: "/image/landcrusiser.png?height=1000&width=400",
+      image: "/image/Land Cruiser.png?height=1000&width=400",
       category: "Premium SUV",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "hilux",
       name: "Toyota Hilux Double Cabin",
       startingPrice: "Hubungi untuk harga",
-      image: "/image/hiluxcabin.png?height=1000&width=400",
+      image: "/image/Haice Comuter.png?height=1000&width=400",
       category: "Pick Up",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "calya",
@@ -268,28 +268,28 @@ export default function HargaPage() {
       image: "/image/calya.png?height=1000&width=400",
       category: "City Car",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "xenia",
@@ -298,28 +298,28 @@ export default function HargaPage() {
       image: "/image/ertiga.png?height=1000&width=400",
       category: "MPV",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "vios",
@@ -328,88 +328,88 @@ export default function HargaPage() {
       image: "/image/vios.png?height=1000&width=400",
       category: "Sedan",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "bmw5",
       name: "BMW 5 Series",
       startingPrice: "Hubungi untuk harga",
-      image: "/image/bmw5.png?height=1000&width=400",
+      image: "/image/5 series.png?height=1000&width=400",
       category: "Luxury",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "camry",
       name: "Toyota Camry",
       startingPrice: "Hubungi untuk harga",
-      image: "/image/carmy.png?height=1000&width=400",
+      image: "/image/Camry.png?height=1000&width=400",
       category: "Premium Sedan",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "mercedes",
@@ -418,28 +418,28 @@ export default function HargaPage() {
       image: "/image/C300.png?height=1000&width=400",
       category: "Luxury",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "vellfire",
@@ -448,28 +448,28 @@ export default function HargaPage() {
       image: "/image/Vellfire.png?height=1000&width=400",
       category: "Premium MPV",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "elf",
@@ -478,88 +478,88 @@ export default function HargaPage() {
       image: "/image/elf.png?height=1000&width=400",
       category: "Bus",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "hiace",
       name: "Toyota Hiace Commuter",
       startingPrice: "Hubungi untuk harga",
-      image: "/image/Hiacecomuter.jpg?height=1000&width=400",
+      image: "/image/Haice Comuter.png?height=1000&width=400",
       category: "Bus",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
     {
       id: "granmax",
       name: "Daihatsu Gran Max Mini Bus",
       startingPrice: "Hubungi untuk harga",
-      image: "/image/granmax.png?height=1000&width=400",
+      image: "/image/grand max mini bus.png?height=1000&width=400",
       category: "Mini Bus",
       contactForPrice: true,
-      services: [
-        {
-          name: "Sewa 12 Jam Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Full day Dengan Supir",
-          price: "Hubungi untuk harga",
-          description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
-        },
-        {
-          name: "Sewa Harian Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 3 hari",
-        },
-        {
-          name: "Sewa Bulanan Lepas Kunci",
-          price: "Hubungi untuk harga",
-          description: "Minimal sewa 1 Bulan",
-        },
-      ],
+      // services: [
+      //   {
+      //     name: "Sewa 12 Jam Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Full day Dengan Supir",
+      //     price: "Hubungi untuk harga",
+      //     description: "Biaya Tol, Parkir, Exclude BBM, Makan Supir",
+      //   },
+      //   {
+      //     name: "Sewa Harian Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 3 hari",
+      //   },
+      //   {
+      //     name: "Sewa Bulanan Lepas Kunci",
+      //     price: "Hubungi untuk harga",
+      //     description: "Minimal sewa 1 Bulan",
+      //   },
+      // ],
     },
   ]
 
@@ -619,38 +619,54 @@ export default function HargaPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {vehicles.map((vehicle) => (
               <Card key={vehicle.id} id={vehicle.id} className="overflow-hidden">
-                <div className="relative h-48">
-                  <Image src={vehicle.image || "/placeholder.svg"} alt={vehicle.name}  width={400}height={250} className="object-cover" />
-                  
+                <div className="relative h-56 w-full">
+                  <Image
+                    src={vehicle.image || "/placeholder.svg"}
+                    alt={vehicle.name}
+                    fill
+                    className="object-cover w-full h-full"
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    priority={vehicle.id === "alphard"}
+                  />
                   <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
                     <span className="text-sm font-semibold text-blue-600">PJTrans</span>
                   </div>
-                  <div className="absolute top-4 right-4">
+                  <div className="absolute top-16 left-4">
                     <Badge variant="secondary">{vehicle.category}</Badge>
                   </div>
                 </div>
-                <CardContent className="p-6">
-                  <div className="text-center mb-4">
-                    <h3 className="text-xl font-bold text-gray-800">{vehicle.name}</h3>
+                <div className="text-center mt-2 mb-1"> {/* mb-1 agar jarak bawah lebih kecil */}
+                  <h3 className="text-xl font-bold text-black-800">{vehicle.name}</h3>
+                  <p
+                    className={`text-2xl font-bold ${vehicle.contactForPrice ? "text-orange-600" : "text-blue-600"} mb-2`}
+                    // mb-2 untuk jarak bawah harga lebih kecil
+                  >
+                    {vehicle.startingPrice}
+                  </p>
+                </div>
+                <CardContent className="p-8 pt-2"> {/* pt-2 agar jarak atas content kecil */}
+                  {/* Hapus nama dan harga kendaraan dari sini */}
+                  {/* <div className="text-center  mt-8 mb-6">
+                    <h3 className="text-xl font-bold text-black-800">{vehicle.name}</h3>
                     <p
                       className={`text-2xl font-bold ${vehicle.contactForPrice ? "text-orange-600" : "text-blue-600"}`}
                     >
                       {vehicle.startingPrice}
                     </p>
-                  </div>
+                  </div> */}
 
                   {/* Always show detailed pricing table */}
-                  <div className="border-t pt-4 mb-4">
+                  <div className="border-t pt2 mb-4">
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="text-xs">Jenis Layanan</TableHead>
-                          <TableHead className="text-xs">Harga Sewa</TableHead>
-                          <TableHead className="text-xs">Keterangan</TableHead>
+                          {/* <TableHead className="text-xs">Jenis Layanan</TableHead>
+                          <TableHead className="text-xs">Harga Sewa</TableHead> 
+                          <TableHead className="text-xs">Keterangan</TableHead>*/}
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {vehicle.services.map((service, index) => (
+                        {/* {vehicle.services.map((service, index) => (
                           <TableRow key={index}>
                             <TableCell className="text-xs font-medium">{service.name}</TableCell>
                             <TableCell
@@ -660,26 +676,33 @@ export default function HargaPage() {
                             </TableCell>
                             <TableCell className="text-xs text-gray-600">{service.description}</TableCell>
                           </TableRow>
-                        ))}
+                        ))} */}
                       </TableBody>
                     </Table>
                   </div>
 
-                  <div className="space-y-2">                    
-                    <div className="space-y-2">
+                  <div className="space-y-2">
+                    <div className="space-y-2 mt-2"> {/* mt-4 agar jarak atas tombol lebih kecil */}
                       <Button asChild className="w-full bg-green-500 hover:bg-green-600" size="sm">
                         <a 
-                          href="https://wa.me/6281315393681?text=Halo%2C%20saya%20ingin%20cek%20ketersediaan%20mobil%20Innova" 
+                          href="https://wa.me/6281315393681?text=Halo%2C%20saya%20ingin%20cek%20ketersediaan%20mobil%20....." 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="flex items-center justify-center gap-2"
                         >
-                          <Phone className="h-4 w-4" />
+                          <Phone className="h-2 w-2" />
                           Chat via WhatsApp
                         </a>
                       </Button>
+                      <Button asChild className="w-full bg-[#005289] hover:bg-blue-700" size="sm">
+                        <a 
+                          href={`/detail/${vehicle.id}`}
+                          className="flex items-center justify-center gap-2"
+                        >
+                          Detail Mobil
+                        </a>
+                      </Button>
                     </div>
-
                     {/* <Button asChild className="w-full bg-green-500 hover:bg-green-600" size="sm">
                       {/* <a href="https://wa.me/6281315393681" target="_blank" rel="noopener noreferrer"> */}
                         {/* <a href="https://wa.me/6281315393681?text=Halo%2C%20saya%20ingin%20cek%20ketersediaan%20mobil%20Innova" 
@@ -698,7 +721,7 @@ export default function HargaPage() {
 
         {/* Terms & Conditions */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">📄 Syarat & Ketentuan</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800"> Syarat & Ketentuan</h2>
           <Card className="max-w-4xl mx-auto">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">

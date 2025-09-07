@@ -10,15 +10,16 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-slate-900 to-slate-700">
-        <div className="relative w-full h-full" />
-        <Image
-          src="/image/2022-11-02.webp?height=1080&width=1920"
-          alt="Luxury cars with professional drivers"
-          fill
-          className="w-full h-full object-cover"
-          priority
-        />
+      <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-slate-500 to-slate-300">
+        <div className="relative w-[1800px] h-[850px]">
+          <Image
+            src="/image/2022-11.png?height=720&width=1080"
+            alt="Luxury cars with professional drivers"
+            fill
+            className="w-full h-full object-cover rounded-lg shadow-lg"
+            priority
+          />
+        </div>
         <div className="absolute bottom-8 left-0 z-10 text-left text-white max-w-4xl p-8 ml-16">
           <h1 className="text-5xl md:text-7xl font-bold mb-4">PJTrans</h1>
           <p className="text-xl md:text-2xl mb-2 text-gray-200">PT Portama Jaya Transportasi</p>
@@ -369,7 +370,7 @@ export default function HomePage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Mitra Kami</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-6xl mx-auto items-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-8 max-w-6xl mx-auto items-center">
             <div className="flex justify-center">
               <Image
                 src="/image/purbajayaproperti.png?height=100&width=200&text=Partner+1"
@@ -399,7 +400,16 @@ export default function HomePage() {
             </div>
              <div className="flex justify-center">
               <Image
-                src="/image/gardatama logo.png?height=100&width=200&text=Partner+3"
+                src="/image/mitra2.png?height=100&width=200&text=Partner+3"
+                alt="Partner 3"
+                width={200}
+                height={100}
+               //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+            </div>
+               <div className="flex justify-center">
+              <Image
+                src="/image/pntng.png?height=100&width=200&text=Partner+3"
                 alt="Partner 3"
                 width={200}
                 height={100}

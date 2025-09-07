@@ -127,7 +127,7 @@ export default function LayananPage() {
                 <Card className="overflow-hidden">
                   <div className="relative h-64 bg-gradient-to-br from-blue-500 to-blue-700">
                     <Image
-                      src="/image/alphard.jpg?height=1200&width=400&text=Toyota+Alphard"
+                      src="/image/Alphard.png?height=500&width=500&text=Toyota+Alphard"
                       alt="Toyota Alphard"
                       fill
                       className="object-cover"
@@ -147,7 +147,7 @@ export default function LayananPage() {
                 <Card className="overflow-hidden">
                   <div className="relative h-64 bg-gradient-to-br from-green-500 to-green-700">
                     <Image
-                      src="/image/fortuner.png?height=1000&width=400&text=Toyota+Fortuner"
+                      src="/image/fortuner.png?height=500&width=500&text=Toyota+Fortuner"
                       alt="Toyota Fortuner"
                       fill
                       className="object-cover"
@@ -166,7 +166,7 @@ export default function LayananPage() {
                 <Card className="overflow-hidden">
                   <div className="relative h-64 bg-gradient-to-br from-purple-500 to-purple-700">
                     <Image
-                      src="/image/carmy.png?height=1000&width=400&text=Toyota+Camry"
+                      src="/image/Camry.png?height=500&width=400&text=Toyota+Camry"
                       alt="Toyota Camry"
                       fill
                       className="object-cover"
@@ -185,7 +185,7 @@ export default function LayananPage() {
                 <Card className="overflow-hidden">
                   <div className="relative h-64 bg-gradient-to-br from-gray-600 to-gray-800">
                     <Image
-                      src="/image/C300.png?height=1000&width=400&text=Mercedes+C300"
+                      src="/image/C300.png?height=500&width=500&text=Mercedes+C300"
                       alt="Mercedes C300"
                       fill
                       className="object-cover"
@@ -204,7 +204,7 @@ export default function LayananPage() {
                 <Card className="overflow-hidden">
                   <div className="relative h-64 bg-gradient-to-br from-indigo-500 to-indigo-700">
                     <Image
-                      src="/image/bmw5.png?height=1000&width=400&text=BMW+5+Series"
+                      src="/image/5 series.png?height=500&width=500&text=BMW+5+Series"
                       alt="BMW 5 Series"
                       fill
                       className="object-cover"
@@ -223,7 +223,7 @@ export default function LayananPage() {
                 <Card className="overflow-hidden">
                   <div className="relative h-64 bg-gradient-to-br from-red-500 to-red-700">
                     <Image
-                      src="/image/Vellfire.png?height=1000&width=400&text=Toyota+Vellfire"
+                      src="/image/Vellfire.png?height=500&width=500&text=Toyota+Vellfire"
                       alt="Toyota Vellfire"
                       fill
                       className="object-cover"
