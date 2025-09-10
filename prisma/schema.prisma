@@ -11,5 +11,19 @@ model Car {
   id    Int     @id @default(autoincrement())
   name  String
   price String
+  category String
   image String?
+  content     String @default("")
+  services Service[]
+}
+
+
+model Service {
+  id          Int    @id @default(autoincrement())
+  type        String // e.g., "12 Jam + Driver"
+  price       String // e.g., "Rp 2.800.000"
+  description String // e.g., "Exclude BBM, Tol, Parkir"
+  
+  carId Int
+  car   Car    @relation(fields: [carId], references: [id])
 }

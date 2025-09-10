@@ -1,3 +1,6 @@
+// File: app/api/upload/route.ts
+// CATATAN: File ini tidak digunakan dalam alur aplikasi saat ini.
+
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
