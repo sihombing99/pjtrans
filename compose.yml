@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    environment:
+      NODE_ENV: production
+      # ---- Prisma / Database ----
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@db:5432/mydb?schema=public}
+      # ---- NextAuth (sesuaikan) ----
+      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-changeme-please}
+      # Tambahkan env lain (NEXT_PUBLIC_*, dsb) di sini atau di file .env
+    # Uncomment jika perlu override command:
+    # command: ["node", "server.js"]
