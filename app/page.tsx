@@ -11,7 +11,7 @@ export default function HomePage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-slate-500 to-slate-300">
-        <div className="relative w-[1800px] h-[850px]">
+        
           <Image
             src="/image/2022-11.png?height=720&width=1080"
             alt="Luxury cars with professional drivers"
@@ -19,7 +19,7 @@ export default function HomePage() {
             className="w-full h-full object-cover rounded-lg shadow-lg"
             priority
           />
-        </div>
+        
         <div className="absolute bottom-8 left-0 z-10 text-left text-white max-w-4xl p-8 ml-16">
           <h1 className="text-5xl md:text-7xl font-bold mb-4">PJTrans</h1>
           <p className="text-xl md:text-2xl mb-2 text-gray-200">PT Portama Jaya Transportasi</p>

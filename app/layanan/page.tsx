@@ -1,5 +1,7 @@
-export const metadata = { title: "Layanan | PJTrans", description: "Informasi Layanan PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia." }
+"use client";
+//export const metadata = { title: "Layanan | PJTrans", description: "Informasi Layanan PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia." }
 
+import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Clock, Car, Users, Plane, MapPin, Building, Star, Globe } from "lucide-react"
@@ -46,8 +48,10 @@ export default function LayananPage() {
     },
   ]
 
+ 
+ const [showAll, setShowAll] = useState(false)
   const serviceCities = [
-    "Jakarta",
+  "Jakarta",
     "Bandung",
     "Yogyakarta",
     "Surabaya",
@@ -71,7 +75,34 @@ export default function LayananPage() {
     "Tangerang",
     "Depok",
     "Bogor",
+    "Cirebon",
+    "Tasikmalaya",
+    "Purwokerto",
+    "Tegal",
+    "Kudus",
+    "Salatiga",
+    "Magelang",
+    "Klaten",
+    "Wonogiri",
+    "Pacitan",
+    "Blitar",
+    "Kediri",
+    "Jember",
+    "Banyuwangi",
+    "Probolinggo",
+    "Pasuruan",
+    "Sidoarjo",
+    "Gresik",
+    "Lamongan",
+    "Tuban",
+    "Bojonegoro",
+    "Ngawi",
+    "Madiun",
+    "Ponorogo",
+    "Trenggalek",
+    "Tulungagung",
   ]
+ const visibleCities = showAll ? serviceCities : serviceCities.slice(0, 12)
 
   return (
     <div className="min-h-screen py-16">
@@ -267,19 +298,24 @@ export default function LayananPage() {
               </CardTitle>
               <CardDescription>Kami hadir di kota Anda!</CardDescription>
             </CardHeader>
-            <CardContent>
+          <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                {serviceCities.map((city, index) => (
+                {visibleCities.map((city, index) => (
                   <div key={index} className="text-center p-3 bg-blue-50 rounded-lg">
                     <span className="text-sm font-medium text-blue-800">{city}</span>
                   </div>
                 ))}
-                <div className="text-center p-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg text-white">
-                  <span className="text-sm font-medium">+50 kota lainnya</span>
-                </div>
+                {!showAll && (
+                  <div className="text-center p-3 bg-blue-50 rounded-lg">
+                    <span className="text-sm font-medium">+{serviceCities.length - 12} kota lainnya</span>
+                  </div>
+                )}
               </div>
-              <div className="mt-6 text-center">
-                <p className="text-gray-600 mb-4">
+              <div className="mt-6 text-center flex flex-col items-center gap-4">
+                <Button variant="outline" onClick={() => setShowAll(!showAll)}>
+                  {showAll ? "Perkecil Informasi Kota" : "Lihat Semua Kota"}
+                </Button>
+                <p className="text-gray-600">
                   Tidak menemukan kota Anda? Hubungi kami untuk informasi ketersediaan layanan.
                 </p>
                 <Button asChild variant="outline">
