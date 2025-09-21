@@ -18,13 +18,14 @@ export default function KontakPage() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-    alert("Pesan Anda telah dikirim! Kami akan segera menghubungi Anda.")
-    setFormData({ name: "", email: "", message: "" })
-  }
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const subject = encodeURIComponent("Pesan dari Website PJTrans");
+    const body = encodeURIComponent(
+      `Nama: ${formData.name}\nEmail: ${formData.email}\nPesan: ${formData.message}`
+    );
+    window.location.href = `mailto:pjtrans@gmail.com?subject=${subject}&body=${body}`;
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({

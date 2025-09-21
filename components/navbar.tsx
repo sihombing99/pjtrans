@@ -54,7 +54,11 @@ export function Navbar() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
             <Button asChild className="bg-green-500 hover:bg-green-600">
-              <a href="https://wa.me/6281315393681" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://wa.me/6281315393681?text=Halo%20PJTrans%2C%20saya%20ingin%20pesan%20mobil%20premium%20untuk%20acara.%20Bisa%20info%20armada%20dan%20harga%3F"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Phone className="h-4 w-4 mr-2" />
                 WhatsApp
               </a>
