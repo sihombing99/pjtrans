@@ -2,6 +2,7 @@
 
 // Metadata dan import dari file Anda dipertahankan
 export const metadata = { title: "Harga & Armada | PJTrans", description: "Informasi Harga & Armada PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia." }
+export const dynamic = "force-dynamic"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -9,6 +10,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Car as CarIcon, Truck, Bus, AlertTriangle, Phone } from "lucide-react" // Mengganti nama import Car agar tidak bentrok
 import Image from "next/image"
+import prisma from "@/lib/prisma"
 
 // 1. Definisikan tipe data Car agar sesuai dengan database Anda
 type Car = {
@@ -16,33 +18,28 @@ type Car = {
   name: string;
   price: string;
   category: string;
-  image: string;
+  image: string | null;
 };
-
-// 2. Buat fungsi untuk mengambil data mobil dari API Anda.
-// Fungsi ini akan berjalan di server.
-async function getCars(): Promise<Car[]> {
-  try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-    
-    const response = await fetch(`${apiUrl}/api/mobil`, {
-      cache: 'no-store', 
-    });
-
-    if (!response.ok) {
-      throw new Error("Gagal mengambil data mobil dari server");
-    }
-
-    return response.json();
-  } catch (error) {
-    console.error(error);
-    return []; 
-  }
-}
 
 // 3. Ubah komponen halaman menjadi 'async' dan panggil getCars
 export default async function HargaPage() {
-  const cars = await getCars();
+  let cars: Car[] = []
+
+  try {
+    const results = await prisma.car.findMany({
+      orderBy: { id: "desc" },
+    })
+
+    cars = results.map((car) => ({
+      id: car.id,
+      name: car.name,
+      price: car.price,
+      category: car.category,
+      image: car.image ?? null,
+    }))
+  } catch (error) {
+    console.error("Error fetching cars:", error)
+  }
 
   return (
     <div className="min-h-screen py-16">
