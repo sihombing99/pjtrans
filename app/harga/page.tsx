@@ -85,6 +85,7 @@ export default async function HargaPage() {
                       src={car.image || "/placeholder.svg"}
                       alt={car.name}
                       fill
+                      unoptimized
                       className="object-cover w-full h-full"
                       sizes="(max-width: 768px) 100vw, 400px"
                       priority={car.id <= 3} // Prioritaskan gambar awal untuk LCP
@@ -144,4 +145,3 @@ export default async function HargaPage() {
     </div>
   )
 }
-

@@ -68,6 +68,7 @@ export default async function DetailPage({ params }: { params: { id: string } })
                     src={car.image || "/placeholder.svg"}
                     alt={car.name}
                     fill
+                    unoptimized
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
@@ -191,4 +192,3 @@ export default async function DetailPage({ params }: { params: { id: string } })
     </div>
   )
 }
-
