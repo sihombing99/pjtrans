@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { unlink } from "fs/promises";
 import path from "path";
+import { Prisma } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -57,7 +58,7 @@ export async function PUT(
     }
 
     // Menggunakan Prisma Transaction untuk menjaga konsistensi data
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // 1. Update data utama mobil, sekarang termasuk 'content'
       await tx.car.update({
         where: { id },
