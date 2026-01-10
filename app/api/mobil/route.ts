@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { writeFile } from "fs/promises";
 import path from "path";
+import { Prisma } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
