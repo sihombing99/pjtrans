@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: { optimizePackageImports: ['lucide-react'] },
+  experimental: { optimizePackageImports: ['lucide-react'],
+   serverExternalPackages: ['@prisma/client', 'prisma'], 
+  },
   output: 'standalone',
   eslint: {
     ignoreDuringBuilds: true,
