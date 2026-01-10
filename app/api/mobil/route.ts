@@ -1,12 +1,12 @@
 // File: app/api/mobil/route.ts
 
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma";
 import { writeFile } from "fs/promises";
 import path from "path";
-import { Prisma } from "@prisma/client";
 
-const prisma = new PrismaClient();
+
+//const prisma = new PrismaClient();
 
 // FUNGSI UNTUK MENGAMBIL SEMUA MOBIL (GET)
 export async function GET() {

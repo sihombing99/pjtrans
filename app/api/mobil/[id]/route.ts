@@ -1,12 +1,13 @@
 // File: app/api/mobil/[id]/route.ts
 
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+
 import { unlink } from "fs/promises";
 import path from "path";
+import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
-const prisma = new PrismaClient();
+//const prisma = new prisma();
 
 // FUNGSI GET (tidak berubah, tapi disertakan untuk kelengkapan)
 export async function GET(
@@ -58,7 +59,7 @@ export async function PUT(
     }
 
     // Menggunakan Prisma Transaction untuk menjaga konsistensi data
-    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+    await prisma.$transaction(async (tx) => {
       // 1. Update data utama mobil, sekarang termasuk 'content'
       await tx.car.update({
         where: { id },
