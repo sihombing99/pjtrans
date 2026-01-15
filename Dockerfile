@@ -3,7 +3,11 @@ FROM node:20-alpine AS deps
 WORKDIR /app
 RUN apk add --no-cache libc6-compat openssl
 COPY package.json package-lock.json* ./
-RUN if [ -f package-lock.json ]; then npm ci --force --no-audit --prefer-offline; else npm install --force --no-audit; fi
+RUN if [ -f package-lock.json ]; then \
+  npm ci --force --no-audit --prefer-offline --ignore-scripts; \
+else \
+  npm install --force --no-audit --ignore-scripts; \
+fi
 
 # 2) Build (generate Prisma client & next build)
 FROM node:20-alpine AS builder
