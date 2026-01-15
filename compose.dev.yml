@@ -1,6 +1,6 @@
 services:
   web:
-    image: ikhsan123/pjtrans:latest
+    build: .
     container_name: pjtrans
     environment:
       NODE_ENV: production
@@ -32,6 +32,8 @@ services:
   adminer:
     image: adminer:latest
     container_name: adminer
+    ports:
+      - "8080:8080"
     depends_on:
       - db
     networks:
