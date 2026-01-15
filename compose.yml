@@ -1,17 +1,46 @@
 services:
   web:
     build: .
-    ports:
-      - "3000:3000"
+    container_name: pjtrans
     environment:
       NODE_ENV: production
       DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@db:5432/mydb?schema=public}
       NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-changeme-please}
+    ports:
+      - "3000:3000"
     volumes:
-      - ./public/uploads:/app/public/uploads    # <— penting: map ke public/uploads
-      - next-cache:/app/.next/cache             # (opsional) cache next/image
-    # command: ["node", "server.js"]
+      - ./public/uploads:/app/public/uploads
+      - next-cache:/app/.next/cache
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: postgres:16
+    container_name: db
+    environment:
+      POSTGRES_DB: pjtrans
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: asintel123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    depends_on:
+      - db
+    networks:
+      - app-network
 
 volumes:
+  pgdata:
   next-cache:
+
+networks:
+  app-network:
+    driver: bridge
