@@ -1,7 +1,7 @@
 "use client";
 //export const metadata = { title: "Layanan | PJTrans", description: "Informasi Layanan PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia." }
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Clock, Car, Users, Plane, MapPin, Building, Star, Globe } from "lucide-react"
@@ -9,6 +9,24 @@ import Link from "next/link"
 import Image from "next/image"
 
 export default function LayananPage() {
+  const [premiumCars, setPremiumCars] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchPremiumCars = async () => {
+      try {
+        const response = await fetch('/api/cars?category=premium')
+        const data = await response.json()
+        setPremiumCars(data.slice(0, 6))
+      } catch (error) {
+        console.error('Error fetching premium cars:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchPremiumCars()
+  }, [])
+
   const services = [
     {
       title: "Sewa Harian",
@@ -154,120 +172,36 @@ export default function LayananPage() {
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* Toyota Alphard */}                                 
-                <Card className="overflow-hidden">
-                  <div className="relative h-64 bg-gradient-to-br from-blue-500 to-blue-700">
-                    <Image
-                      src="/image/Alphard.png?height=500&width=500&text=Toyota+Alphard"
-                      alt="Toyota Alphard"
-                      fill
-                      className="object-cover"
-                      style={{ objectPosition: 'center' }}
-                    />
-                    <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
-                      <span className="text-sm font-semibold text-blue-600">Premium</span>
-                    </div>
+                {loading ? (
+                  <div className="col-span-full text-center py-8 text-gray-500">
+                    Loading kendaraan premium...
                   </div>
-                  <CardContent className="p-4 text-center">
-                    <h3 className="text-lg font-bold text-gray-800">Toyota Alphard</h3>
-                    <p className="text-sm text-gray-600">Luxury MPV</p>
-                  </CardContent>
-                </Card>
-
-                {/* Toyota Fortuner */}
-                <Card className="overflow-hidden">
-                  <div className="relative h-64 bg-gradient-to-br from-green-500 to-green-700">
-                    <Image
-                      src="/image/fortuner.png?height=500&width=500&text=Toyota+Fortuner"
-                      alt="Toyota Fortuner"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
-                      <span className="text-sm font-semibold text-green-600">SUV</span>
-                    </div>
+                ) : premiumCars.length > 0 ? (
+                  premiumCars.map((car) => (
+                    <Card key={car.id} className="overflow-hidden">
+                      <div className="relative h-64 bg-gradient-to-br from-blue-500 to-blue-700">
+                        <Image
+                          src={car.image || "/placeholder.svg"}
+                          alt={car.name}
+                          fill
+                          unoptimized
+                          className="object-cover"
+                        />
+                        <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
+                          <span className="text-sm font-semibold text-blue-600">Premium</span>
+                        </div>
+                      </div>
+                      <CardContent className="p-4 text-center">
+                        <h3 className="text-lg font-bold text-gray-800">{car.name}</h3>
+                        <p className="text-sm text-gray-600">{car.category}</p>
+                      </CardContent>
+                    </Card>
+                  ))
+                ) : (
+                  <div className="col-span-full text-center py-8 text-gray-500">
+                    Belum ada data kendaraan premium
                   </div>
-                  <CardContent className="p-4 text-center">
-                    <h3 className="text-lg font-bold text-gray-800">Toyota Fortuner</h3>
-                    <p className="text-sm text-gray-600">Premium SUV</p>
-                  </CardContent>
-                </Card>
-
-                {/* Toyota Camry */}
-                <Card className="overflow-hidden">
-                  <div className="relative h-64 bg-gradient-to-br from-purple-500 to-purple-700">
-                    <Image
-                      src="/image/Camry.png?height=500&width=400&text=Toyota+Camry"
-                      alt="Toyota Camry"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
-                      <span className="text-sm font-semibold text-purple-600">Sedan</span>
-                    </div>
-                  </div>
-                  <CardContent className="p-4 text-center">
-                    <h3 className="text-lg font-bold text-gray-800">Toyota Camry</h3>
-                    <p className="text-sm text-gray-600">Executive Sedan</p>
-                  </CardContent>
-                </Card>
-
-                {/* Mercedes-Benz */}
-                <Card className="overflow-hidden">
-                  <div className="relative h-64 bg-gradient-to-br from-gray-600 to-gray-800">
-                    <Image
-                      src="/image/C300.png?height=500&width=500&text=Mercedes+C300"
-                      alt="Mercedes C300"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
-                      <span className="text-sm font-semibold text-gray-800">Luxury</span>
-                    </div>
-                  </div>
-                  <CardContent className="p-4 text-center">
-                    <h3 className="text-lg font-bold text-gray-800">Mercedes C300</h3>
-                    <p className="text-sm text-gray-600">Luxury Sedan</p>
-                  </CardContent>
-                </Card>
-
-                {/* BMW 5 Series */}
-                <Card className="overflow-hidden">
-                  <div className="relative h-64 bg-gradient-to-br from-indigo-500 to-indigo-700">
-                    <Image
-                      src="/image/5 series.png?height=500&width=500&text=BMW+5+Series"
-                      alt="BMW 5 Series"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
-                      <span className="text-sm font-semibold text-indigo-600">Luxury</span>
-                    </div>
-                  </div>
-                  <CardContent className="p-4 text-center">
-                    <h3 className="text-lg font-bold text-gray-800">BMW 5 Series</h3>
-                    <p className="text-sm text-gray-600">Executive Sedan</p>
-                  </CardContent>
-                </Card>
-
-                {/* Toyota Vellfire */}
-                <Card className="overflow-hidden">
-                  <div className="relative h-64 bg-gradient-to-br from-red-500 to-red-700">
-                    <Image
-                      src="/image/Vellfire.png?height=500&width=500&text=Toyota+Vellfire"
-                      alt="Toyota Vellfire"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
-                      <span className="text-sm font-semibold text-red-600">Premium</span>
-                    </div>
-                  </div>
-                  <CardContent className="p-4 text-center">
-                    <h3 className="text-lg font-bold text-gray-800">Toyota Vellfire</h3>
-                    <p className="text-sm text-gray-600">Luxury MPV</p>
-                  </CardContent>
-                </Card>
+                )}
               </div>
 
               <div className="mt-8 text-center">

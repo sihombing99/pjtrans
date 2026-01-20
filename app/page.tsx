@@ -1,19 +1,60 @@
 export const metadata = { title: ". | PJTrans", description: "Informasi . PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia." }
+export const dynamic = "force-dynamic"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Car, Shield, Users, MapPin, Clock, CheckCircle } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { Car, Shield, Users, MapPin, Clock, CheckCircle, Phone } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import prisma from "@/lib/prisma"
 
-export default function HomePage() {
+// Type definition for Car with Services
+type Car = {
+  id: number;
+  name: string;
+  price: string;
+  category: string;
+  image: string | null;
+  services: Array<{
+    id: number;
+    type: string;
+    price: string;
+    description: string;
+  }>;
+};
+
+export default async function HomePage() {
+  let cars: Car[] = []
+
+  try {
+    const results = await prisma.car.findMany({
+      include: {
+        services: true,
+      },
+      orderBy: { id: "desc" },
+      take: 3, // Show only 3 cars on homepage
+    })
+
+    cars = results.map((car) => ({
+      id: car.id,
+      name: car.name,
+      price: car.price,
+      category: car.category,
+      image: car.image ?? null,
+      services: car.services,
+    }))
+  } catch (error) {
+    console.error("Error fetching cars:", error)
+  }
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-slate-500 to-slate-300">
         
           <Image
-            src="/image/2022-11.png?height=720&width=1080"
+            src="/image/BG_pj.png?height=720&width=1080"
             alt="Luxury cars with professional drivers"
             fill
             className="w-full h-full object-cover rounded-lg shadow-lg"
@@ -185,114 +226,34 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {/* Toyota Alphard */}
-            <Card className="overflow-hidden">
-              <div className="relative h-48 bg-gradient-to-br from-blue-500 to-blue-700">
-                <Image src="/image/alphard.jpg?height=1000&width=400" alt="Toyota Alphard" fill className="object-cover" />
-                <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
-                  <span className="text-sm font-semibold text-blue-600">PJTrans</span>
-                </div>
+            {/* Dynamic Car Cards from Database - Simple Display */}
+            {cars.length > 0 ? (
+              cars.map((car) => (
+                <Card key={car.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <div className="relative h-56 w-full">
+                    <Image
+                      src={car.image || "/placeholder.svg"}
+                      alt={car.name}
+                      fill
+                      unoptimized
+                      className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      priority={car.id <= 3}
+                    />
+                    <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
+                      <span className="text-sm font-semibold text-blue-600">PJTrans</span>
+                    </div>
+                  </div>
+                  <CardContent className="p-4 text-center">
+                    <h3 className="text-lg font-bold text-gray-800">{car.name}</h3>
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-600 text-lg">Armada belum tersedia. Silakan hubungi kami.</p>
               </div>
-              <CardContent className="p-6">
-                <div className="text-center mb-4">
-                  <h3 className="text-xl font-bold text-gray-800">Toyota Alphard</h3>
-                  <p className="text-2xl font-bold text-blue-600">Rp. 3.800.000</p>
-                </div>
-                <Button asChild className="w-full mb-4 bg-green-500 hover:bg-green-600">
-                  <Link href="/harga#alphard">Details</Link>
-                </Button>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">12 Jam + Supir</span>
-                    <span className="font-semibold">Rp 2.800.000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Full Day + Supir</span>
-                    <span className="font-semibold">Rp 3.200.000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Lepas Kunci</span>
-                    <span className="font-semibold">Rp 2.500.000</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Toyota Innova Zenix */}
-            <Card className="overflow-hidden">
-              <div className="relative h-48 bg-gradient-to-br from-blue-500 to-blue-700">
-                <Image
-                  src="/image/inova.png?height=1000&width=400"
-                  alt="Toyota Innova Zenix"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
-                  <span className="text-sm font-semibold text-blue-600">PJTrans</span>
-                </div>
-              </div>
-              <CardContent className="p-6">
-                <div className="text-center mb-4">
-                  <h3 className="text-xl font-bold text-gray-800">Toyota Innova Zenix</h3>
-                  <p className="text-2xl font-bold text-blue-600">Rp. 800.000</p>
-                </div>
-                <Button asChild className="w-full mb-4 bg-green-500 hover:bg-green-600">
-                  <Link href="/harga#innova">Details</Link>
-                </Button>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">12 Jam + Supir</span>
-                    <span className="font-semibold">Rp 1.100.000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Full Day + Supir</span>
-                    <span className="font-semibold">Rp 1.500.000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Lepas Kunci</span>
-                    <span className="font-semibold">Rp 650.000</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Toyota Avanza */}
-            <Card className="overflow-hidden">
-              <div className="relative h-48 bg-gradient-to-br from-blue-500 to-blue-700">
-                <Image
-                  src="/image/avanza.png?height=1000&width=400"
-                  alt="Toyota All New Avanza"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full">
-                  <span className="text-sm font-semibold text-blue-600">PJTrans</span>
-                </div>
-              </div>
-              <CardContent className="p-6">
-                <div className="text-center mb-4">
-                  <h3 className="text-xl font-bold text-gray-800">Toyota All New Avanza</h3>
-                  <p className="text-2xl font-bold text-blue-600">Rp. 500.000</p>
-                </div>
-                <Button asChild className="w-full mb-4 bg-green-500 hover:bg-green-600">
-                  <Link href="/harga#avanza">Details</Link>
-                </Button>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">12 Jam + Supir</span>
-                    <span className="font-semibold">Rp 700.000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Full Day + Supir</span>
-                    <span className="font-semibold">Rp 1.000.000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Lepas Kunci</span>
-                    <span className="font-semibold">Rp 500.000</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            )}
           </div>
 
           <div className="text-center mt-8">

@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -11,81 +10,130 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react"
 
+// Constants
+const WHATSAPP_NUMBER = "6281315393681"
+const EMAIL = "portamajaya.transportasi@gmail.com"
+const PHONE = "0813-2919-5095"
+const OFFICE_ADDRESS = {
+  building: "Ruko Apartemen Sakura Garden City No. 117",
+  street: "Jl. Bina Marga No. 88, Cipayung",
+  city: "Jakarta Timur",
+}
+const MAPS_URL = `https://maps.google.com/?q=${encodeURIComponent(
+  `${OFFICE_ADDRESS.building} ${OFFICE_ADDRESS.street} ${OFFICE_ADDRESS.city}`
+)}`
+
+const SERVICE_CITIES = [
+  "Jakarta", "Bandung", "Yogyakarta", "Surabaya", "Denpasar",
+  "Medan", "Makassar", "Palembang", "Pekanbaru", "Semarang",
+  "Malang", "Solo", "Balikpapan", "Banjarmasin", "Pontianak",
+  "Manado", "Padang", "Jambi", "Lampung", "Batam",
+  "Bekasi", "Tangerang", "Depok", "Bogor", "Cirebon",
+  "Tasikmalaya", "Purwokerto", "Tegal", "Kudus", "Salatiga",
+  "Magelang", "Klaten", "Wonogiri", "Pacitan", "Blitar",
+  "Kediri", "Jember", "Banyuwangi", "Probolinggo", "Pasuruan",
+  "Sidoarjo", "Gresik", "Lamongan", "Tuban", "Bojonegoro",
+  "Ngawi", "Madiun", "Ponorogo", "Trenggalek", "Tulungagung",
+]
+
+const OPERATING_HOURS = [
+  { day: "Senin - Jumat", hours: "08:00 - 22:00 WIB" },
+  { day: "Sabtu - Minggu", hours: "08:00 - 20:00 WIB" },
+  { day: "Emergency", hours: "24/7 via WhatsApp" },
+]
+
+// Utility Functions
+function generateGmailComposeUrl(email: string, name: string, userEmail: string, message: string): string {
+  const subject = encodeURIComponent("Pesan dari Website PJTrans")
+  const body = encodeURIComponent(
+    `Nama: ${name}\nEmail: ${userEmail}\n\nPesan:\n${message}`
+  )
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`
+}
+
+// Types
+interface FormData {
+  name: string
+  email: string
+  message: string
+}
+
+interface ContactCardProps {
+  icon: React.ReactNode
+  title: string
+  children: React.ReactNode
+}
+
+// Components
+function ContactCard({ icon, title, children }: ContactCardProps) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">{icon} {title}</CardTitle>
+      </CardHeader>
+      <CardContent>{children}</CardContent>
+    </Card>
+  )
+}
+
+function ServiceCitiesBadges() {
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-h-96 overflow-y-auto">
+      {SERVICE_CITIES.map((city) => (
+        <Badge key={city} variant="outline" className="justify-center p-2">
+          {city}
+        </Badge>
+      ))}
+    </div>
+  )
+}
+
+function MapSection() {
+  return (
+    <section className="mt-16">
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Lokasi Kantor</h2>
+      <Card className="max-w-4xl mx-auto">
+        <CardContent className="p-0">
+          <div className="w-full h-96 rounded-lg overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4705.112082482534!2d106.7679271!3d-6.1910574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7a7a2ea0b41%3A0xdaf5c712bea2af3a!2sPJTrans%20(PT.%20Portama%20Jaya%20Transportasi)%20-%20Head%20Office!5e1!3m2!1sid!2sid!4v1755009963335!5m2!1sid!2sid"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </CardContent>
+      </Card>
+    </section>
+  )
+}
+
+// Main Component
 export default function KontakPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",
   })
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    const subject = encodeURIComponent("Pesan dari Website PJTrans");
-    const body = encodeURIComponent(
-      `Nama: ${formData.name}\nEmail: ${formData.email}\nPesan: ${formData.message}`
-    );
-    window.location.href = `mailto:pjtrans@gmail.com?subject=${subject}&body=${body}`;
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const serviceCities = [
-    "Jakarta",
-    "Bandung",
-    "Yogyakarta",
-    "Surabaya",
-    "Denpasar",
-    "Medan",
-    "Makassar",
-    "Palembang",
-    "Pekanbaru",
-    "Semarang",
-    "Malang",
-    "Solo",
-    "Balikpapan",
-    "Banjarmasin",
-    "Pontianak",
-    "Manado",
-    "Padang",
-    "Jambi",
-    "Lampung",
-    "Batam",
-    "Bekasi",
-    "Tangerang",
-    "Depok",
-    "Bogor",
-    "Cirebon",
-    "Tasikmalaya",
-    "Purwokerto",
-    "Tegal",
-    "Kudus",
-    "Salatiga",
-    "Magelang",
-    "Klaten",
-    "Wonogiri",
-    "Pacitan",
-    "Blitar",
-    "Kediri",
-    "Jember",
-    "Banyuwangi",
-    "Probolinggo",
-    "Pasuruan",
-    "Sidoarjo",
-    "Gresik",
-    "Lamongan",
-    "Tuban",
-    "Bojonegoro",
-    "Ngawi",
-    "Madiun",
-    "Ponorogo",
-    "Trenggalek",
-    "Tulungagung",
-  ]
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const gmailUrl = generateGmailComposeUrl(
+      EMAIL,
+      formData.name,
+      formData.email,
+      formData.message
+    )
+    window.open(gmailUrl, "_blank")
+  }
 
   return (
     <div className="min-h-screen py-16">
@@ -98,98 +146,72 @@ export default function KontakPage() {
           </p>
         </div>
 
+        {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Information */}
+          {/* Contact Information Section */}
           <div className="space-y-6">
             <h2 className="text-3xl font-bold mb-6 text-gray-800">Lokasi & Kontak</h2>
 
-            {/* Contact Cards */}
-            <div className="space-y-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Phone className="h-5 w-5 text-green-500" />
-                    WhatsApp / Telepon
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg font-semibold text-green-600">0813-2919-5095</p>
-                  <p className="text-sm text-gray-600 mt-1">Layanan 24/7 untuk pemesanan darurat</p>
-                  <Button asChild className="mt-3 bg-green-500 hover:bg-green-600">
-                    <a href="https://wa.me/6281315393681" target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="h-4 w-4 mr-2" />
-                      Chat WhatsApp
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
+            {/* WhatsApp Card */}
+            <ContactCard
+              icon={<Phone className="h-5 w-5 text-green-500" />}
+              title="WhatsApp / Telepon"
+            >
+              <p className="text-lg font-semibold text-green-600">{PHONE}</p>
+              <p className="text-sm text-gray-600 mt-1">Layanan 24/7 untuk pemesanan darurat</p>
+              <Button asChild className="mt-3 bg-green-500 hover:bg-green-600">
+                <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-4 w-4 mr-2" />
+                  Chat WhatsApp
+                </a>
+              </Button>
+            </ContactCard>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Mail className="h-5 w-5 text-blue-500" />
-                    Email
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg font-semibold text-blue-600">portamajaya.transportasi@gmail.com</p>
-                  <p className="text-sm text-gray-600 mt-1">Untuk pertanyaan detail dan penawaran khusus</p>
-                </CardContent>
-              </Card>
+            {/* Email Card */}
+            <ContactCard
+              icon={<Mail className="h-5 w-5 text-blue-500" />}
+              title="Email"
+            >
+              <p className="text-lg font-semibold text-blue-600">{EMAIL}</p>
+              <p className="text-sm text-gray-600 mt-1">Untuk pertanyaan detail dan penawaran khusus</p>
+            </ContactCard>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-red-500" />
-                    Alamat Kantor
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700 leading-relaxed">
-                    Ruko Apartemen Sakura Garden City No. 117
-                    <br />
-                    Jl. Bina Marga No. 88, Cipayung
-                    <br />
-                    Jakarta Timur
+            {/* Address Card */}
+            <ContactCard
+              icon={<MapPin className="h-5 w-5 text-red-500" />}
+              title="Alamat Kantor"
+            >
+              <p className="text-gray-700 leading-relaxed">
+                {OFFICE_ADDRESS.building}
+                <br />
+                {OFFICE_ADDRESS.street}
+                <br />
+                {OFFICE_ADDRESS.city}
+              </p>
+              <Button asChild variant="outline" className="mt-3 bg-transparent">
+                <a href={MAPS_URL} target="_blank" rel="noopener noreferrer">
+                  <MapPin className="h-4 w-4 mr-2" />
+                  Buka di Google Maps
+                </a>
+              </Button>
+            </ContactCard>
+
+            {/* Operating Hours Card */}
+            <ContactCard
+              icon={<Clock className="h-5 w-5 text-purple-500" />}
+              title="Jam Operasional"
+            >
+              <div className="space-y-2 text-gray-700">
+                {OPERATING_HOURS.map(({ day, hours }) => (
+                  <p key={day}>
+                    <strong>{day}:</strong> {hours}
                   </p>
-                  <Button asChild variant="outline" className="mt-3 bg-transparent">
-                    <a
-                      href="https://maps.google.com/?q=Ruko+Apartemen+Sakura+Garden+City+No.+117+Jl.+Bina+Marga+No.+88+Cipayung+Jakarta+Timur"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MapPin className="h-4 w-4 mr-2" />
-                      Buka di Google Maps
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Clock className="h-5 w-5 text-purple-500" />
-                    Jam Operasional
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 text-gray-700">
-                    <p>
-                      <strong>Senin - Jumat:</strong> 08:00 - 22:00 WIB
-                    </p>
-                    <p>
-                      <strong>Sabtu - Minggu:</strong> 08:00 - 20:00 WIB
-                    </p>
-                    <p>
-                      <strong>Emergency:</strong> 24/7 via WhatsApp
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                ))}
+              </div>
+            </ContactCard>
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Form Section */}
           <div>
             <h2 className="text-3xl font-bold mb-6 text-gray-800">Kirim Pesan ke Kami</h2>
             <Card>
@@ -245,7 +267,7 @@ export default function KontakPage() {
           </div>
         </div>
 
-        {/* Service Areas */}
+        {/* Service Areas Section */}
         <section className="mt-16">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Area Layanan</h2>
           <Card className="max-w-6xl mx-auto">
@@ -254,18 +276,12 @@ export default function KontakPage() {
               <CardDescription>Scroll list kota atau ketik nama kota Anda untuk cek layanan kami</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-h-96 overflow-y-auto">
-                {serviceCities.map((city, index) => (
-                  <Badge key={index} variant="outline" className="justify-center p-2">
-                    {city}
-                  </Badge>
-                ))}
-              </div>
+              <ServiceCitiesBadges />
               <div className="mt-6 text-center">
                 <p className="text-gray-600 mb-4">Tidak menemukan kota Anda dalam daftar? Jangan khawatir!</p>
                 <Button asChild variant="outline">
                   <a
-                    href="https://wa.me/6281315393681?text=Halo, saya ingin menanyakan ketersediaan layanan di kota..."
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Halo, saya ingin menanyakan ketersediaan layanan di kota...`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -277,43 +293,9 @@ export default function KontakPage() {
           </Card>
         </section>
 
-        {/* Google Maps Embed */}
-        {/* <section className="mt-16">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Lokasi Kantor</h2>
-          <Card className="max-w-4xl mx-auto">
-            <CardContent className="p-0">
-              <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-                <div className="text-center text-gray-600">
-                  <MapPin className="h-12 w-12 mx-auto mb-4" />
-                  <p className="text-lg font-semibold">Google Maps</p>
-                  <p className="text-sm">Embed lokasi kantor PJTrans</p>
-                  <p className="text-xs mt-2">Ruko Sakura Garden City No. 117, Cipayung, Jakarta Timur</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section> */}
-        <section className="mt-16">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Lokasi Kantor</h2>
-        <Card className="max-w-4xl mx-auto">
-          <CardContent className="p-0">
-            <div className="w-full h-96 rounded-lg overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4705.112082482534!2d106.7679271!3d-6.1910574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7a7a2ea0b41%3A0xdaf5c712bea2af3a!2sPJTrans%20(PT.%20Portama%20Jaya%20Transportasi)%20-%20Head%20Office!5e1!3m2!1sid!2sid!4v1755009963335!5m2!1sid!2sid"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
+        <MapSection />
       </div>
     </div>
   )
 }
- 
+
