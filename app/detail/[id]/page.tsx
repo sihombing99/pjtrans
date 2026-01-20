@@ -55,138 +55,238 @@ export default async function DetailPage({ params }: { params: { id: string } })
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-white font-sans">
       
-      {/* --- BAGIAN UTAMA DENGAN LATAR BELAKANG BIRU FULL-WIDTH --- */}
-      <div className="bg-gradient-to-br from-[#005289] to-[#0077B6] text-white">
-        <div className="container mx-auto px-4 py-12 md:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
-            {/* Kolom Gambar */}
-            <div className="lg:col-span-3">
-              <div className="relative h-96 w-full rounded-xl overflow-hidden shadow-2xl group">
-                <Image
-                    src={car.image || "/placeholder.svg"}
-                    alt={car.name}
-                    fill
-                    unoptimized
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+      {/* --- HERO SECTION MODERN FULL-WIDTH --- */}
+      <div className="relative w-full bg-gradient-to-r from-[#001E3C] via-[#003B5C] to-[#005289] text-white overflow-hidden">
+        {/* Decorative blobs */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+        
+        <div className="w-full px-4 py-6 md:py-8 relative z-10">
+          <div className="container mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-8 items-center">
+              
+              {/* Kolom Gambar - Modern Landscape */}
+              <div className="lg:col-span-3">
+                <div className="relative w-full h-[350px] lg:h-[400px] rounded-2xl overflow-hidden shadow-2xl group backdrop-blur-xl">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent z-10"></div>
+                  <Image
+                      src={car.image || "/placeholder.svg"}
+                      alt={car.name}
+                      fill
+                      unoptimized
+                      className="object-cover object-left transition-transform duration-700 group-hover:scale-110 drop-shadow-2xl"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Kolom Detail & Deskripsi */}
-            <div className="lg:col-span-2 flex flex-col justify-center">
-              <span className="font-semibold mb-2 text-blue-200">{car.category}</span>
-              <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
-                {car.name}
-              </h1>
-              <p className="text-2xl text-gray-200 mb-6">
-                Mulai dari <span className="font-bold text-white">{car.price}</span>
-              </p>
-              {car.content && (
-                   <div className="text-blue-100 leading-relaxed bg-white/10 p-4 rounded-lg">
-                      <p>{car.content}</p>
-                   </div>
-              )}
+              {/* Kolom Detail - Modern Typography */}
+              <div className="lg:col-span-2 flex flex-col justify-center space-y-3">
+                <div className="space-y-1">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-xs font-semibold text-white/90 uppercase tracking-widest">
+                    {car.category}
+                  </span>
+                </div>
+                
+                <div className="space-y-2">
+                  <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-none drop-shadow-xl">
+                    {car.name}
+                  </h1>
+                  <div className="h-1 w-20 bg-gradient-to-r from-green-400 to-green-300 rounded-full"></div>
+                </div>
+                
+                <div className="space-y-1">
+                  <p className="text-white/70 text-sm font-medium uppercase tracking-wider">Mulai Dari</p>
+                  <p className="text-3xl md:text-4xl font-bold drop-shadow-lg">
+                    {car.price}
+                  </p>
+                </div>
+                
+                {car.content && (
+                     <div className="space-y-2 pt-2">
+                        <p className="text-white/80 leading-relaxed text-xs md:text-sm font-medium">
+                          {car.content}
+                        </p>
+                     </div>
+                )}
+                
+                {/* Modern CTA Button */}
+                <div className="pt-3">
+                  <Button asChild className="group/btn relative bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-gray-900 font-bold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 w-full md:w-auto px-6 py-2 text-sm">
+                    <a href={`https://wa.me/6281315393681?text=Halo%2C%20saya%20ingin%20booking%20${encodeURIComponent(car.name)}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                      <Phone className="h-4 w-4 group-hover/btn:scale-110 transition-transform" />
+                      <span>Chat Sekarang</span>
+                    </a>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       
-      {/* --- SISA KONTEN HALAMAN --- */}
-      <div className="container mx-auto px-4 py-12 md:py-20">
-        {/* Tabel Harga Layanan Dinamis */}
-        <div className="max-w-5xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Rincian Harga Sewa</h2>
-            <div className="overflow-x-auto bg-white p-6 rounded-xl shadow-lg">
-                <table className="min-w-full">
-                    <thead>
-                        <tr className="border-b-2 border-gray-200">
-                            <th className="py-3 px-4 text-left font-semibold text-gray-600 uppercase tracking-wider">Tipe Layanan</th>
-                            <th className="py-3 px-4 text-left font-semibold text-gray-600 uppercase tracking-wider">Harga</th>
-                            <th className="py-3 px-4 text-left font-semibold text-gray-600 uppercase tracking-wider">Keterangan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {car.services && car.services.length > 0 ? (
-                            car.services.map((service) => (
-                                <tr key={service.id} className="border-b border-gray-100 last:border-b-0 hover:bg-blue-50 transition-colors">
-                                    <td className="py-4 px-4 font-medium text-gray-800">{service.type}</td>
-                                    <td className="py-4 px-4 font-bold text-blue-600 text-lg">{service.price}</td>
-                                    <td className="py-4 px-4 text-gray-600">{service.description}</td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan={3} className="py-8 px-4 text-center text-gray-500">
-                                    Rincian harga untuk mobil ini belum tersedia.
-                                </td>
+      {/* --- SISA KONTEN HALAMAN MODERN --- */}
+      <div className="bg-gray-50/50 backdrop-blur-sm">
+        <div className="container mx-auto px-4 py-16 md:py-24">
+          {/* Rincian Harga Section */}
+          <div className="max-w-5xl mx-auto mb-20">
+              <div className="space-y-2 mb-12">
+                <h2 className="text-4xl font-bold text-gray-900">Rincian Harga Sewa</h2>
+                <div className="h-1 w-16 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
+              </div>
+              
+              <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow">
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead>
+                            <tr className="border-b-2 border-gray-300">
+                                <th className="py-4 px-4 text-left font-bold text-gray-800 uppercase tracking-wider text-sm">Tipe Layanan</th>
+                                <th className="py-4 px-4 text-left font-bold text-gray-800 uppercase tracking-wider text-sm">Harga</th>
+                                <th className="py-4 px-4 text-left font-bold text-gray-800 uppercase tracking-wider text-sm">Keterangan</th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        {/* --- BAGIAN STATIS --- */}
-        <div className="max-w-5xl mx-auto mb-16">
-           <Card className="shadow-lg border-none bg-white">
-             <CardHeader>
-               <CardTitle className="flex items-center gap-3 text-2xl font-bold text-gray-800">
-                 <AlertTriangle className="h-6 w-6 text-yellow-500" />
-                 Syarat & Ketentuan Penting
-               </CardTitle>
-             </CardHeader>
-             <CardContent className="text-gray-700 list-decimal pl-10 space-y-3">
-                <li>Pemesanan armada wajib dilakukan maksimal H-1 (satu hari sebelum keberangkatan).</li>
-                <li>Durasi sewa harian dihitung per tanggal (00:00 - 23:59), bukan 24 jam dari waktu mulai.</li>
-                <li>Biaya overtime (kelebihan waktu sewa) adalah 10% dari harga sewa per jam.</li>
-                <li>Pembatalan pada hari-H akan dikenakan denda sebesar 50% dari total biaya sewa.</li>
-                <li>Harga sewa dengan supir belum termasuk biaya BBM, tol, parkir, dan akomodasi supir (jika keluar kota).</li>
-             </CardContent>
-           </Card>
-        </div>
+                        </thead>
+                        <tbody>
+                            {car.services && car.services.length > 0 ? (
+                                car.services.map((service) => (
+                                    <tr key={service.id} className="border-b border-gray-200 last:border-b-0 hover:bg-blue-50/50 transition-colors">
+                                        <td className="py-4 px-4 font-semibold text-gray-800">{service.type}</td>
+                                        <td className="py-4 px-4 font-bold text-blue-600 text-lg">{service.price}</td>
+                                        <td className="py-4 px-4 text-gray-600">{service.description}</td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan={3} className="py-8 px-4 text-center text-gray-500">
+                                        Rincian harga untuk mobil ini belum tersedia.
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                  </div>
+              </div>
+          </div>
+          
+          {/* Syarat & Ketentuan Section */}
+          <div className="max-w-5xl mx-auto mb-20">
+             <div className="space-y-2 mb-12">
+               <h2 className="text-4xl font-bold text-gray-900">Syarat & Ketentuan</h2>
+               <div className="h-1 w-16 bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full"></div>
+             </div>
 
-        <div className="max-w-5xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Pertanyaan Umum (FAQ)</h2>
-            <Accordion type="single" collapsible className="w-full bg-white p-6 rounded-xl shadow-lg space-y-2">
-              <AccordionItem value="item-1">
-                <AccordionTrigger className="font-semibold text-lg hover:no-underline">Dokumen apa saja yang diperlukan untuk sewa lepas kunci?</AccordionTrigger>
-                <AccordionContent className="text-gray-600">
-                  Untuk sewa lepas kunci, kami memerlukan KTP, SIM A yang masih berlaku, dan bukti domisili (seperti tagihan listrik/air). Dokumen tambahan mungkin diperlukan untuk verifikasi lebih lanjut.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger className="font-semibold text-lg hover:no-underline">Apakah bisa sewa untuk perjalanan luar kota?</AccordionTrigger>
-                <AccordionContent className="text-gray-600">
-                  Tentu saja. Kami melayani perjalanan untuk dalam dan luar kota. Mohon informasikan destinasi Anda saat melakukan pemesanan agar kami dapat memberikan penawaran terbaik, termasuk estimasi akomodasi untuk supir.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger className="font-semibold text-lg hover:no-underline">Bagaimana jika terjadi kerusakan pada mobil saat disewa?</AccordionTrigger>
-                <AccordionContent className="text-gray-600">
-                  Harap segera hubungi tim kami jika terjadi kendala atau kerusakan. Kami akan memberikan panduan dan bantuan secepatnya. Untuk kerusakan ringan akibat kelalaian penyewa, biaya perbaikan akan dibebankan kepada penyewa.
-                </AccordionContent>
-              </AccordionItem>
-               <AccordionItem value="item-4">
-                <AccordionTrigger className="font-semibold text-lg hover:no-underline">Apakah tersedia layanan antar-jemput mobil di bandara?</AccordionTrigger>
-                <AccordionContent className="text-gray-600">
-                  Ya, kami menyediakan layanan antar-jemput kendaraan di Bandara Soekarno-Hatta, Halim Perdanakusuma, dan lokasi lain di Jabodetabek sesuai kesepakatan.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-        </div>
-        
-        <div className="text-center bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 px-8 rounded-xl shadow-2xl">
-            <h3 className="text-3xl font-extrabold mb-4">Siap untuk Perjalanan Anda?</h3>
-            <p className="mb-6 max-w-2xl mx-auto text-blue-100">
-              Booking <span className="font-bold">{car.name}</span> sekarang juga. Tim kami siap membantu Anda 24 jam untuk memastikan perjalanan Anda aman, nyaman, dan berkesan.
-            </p>
-            <Button asChild size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold text-lg py-3 px-8 rounded-full transition-transform hover:scale-105">
-              <a href="https://wa.me/6281315393681" target="_blank" rel="noopener noreferrer">
-                <Phone className="h-5 w-5 mr-3" /> Hubungi via WhatsApp
-              </a>
-            </Button>
+             <Card className="shadow-lg border-none bg-white hover:shadow-xl transition-shadow">
+               <CardContent className="p-8">
+                 <ul className="space-y-4">
+                    <li className="flex gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-100">
+                          <span className="text-sm font-bold text-yellow-600">1</span>
+                        </div>
+                      </div>
+                      <p className="text-gray-700 font-medium">Pemesanan armada wajib dilakukan maksimal H-1 (satu hari sebelum keberangkatan).</p>
+                    </li>
+                    <li className="flex gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-100">
+                          <span className="text-sm font-bold text-yellow-600">2</span>
+                        </div>
+                      </div>
+                      <p className="text-gray-700 font-medium">Durasi sewa harian dihitung per tanggal (00:00 - 23:59), bukan 24 jam dari waktu mulai.</p>
+                    </li>
+                    <li className="flex gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-100">
+                          <span className="text-sm font-bold text-yellow-600">3</span>
+                        </div>
+                      </div>
+                      <p className="text-gray-700 font-medium">Biaya overtime (kelebihan waktu sewa) adalah 10% dari harga sewa per jam.</p>
+                    </li>
+                    <li className="flex gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-100">
+                          <span className="text-sm font-bold text-yellow-600">4</span>
+                        </div>
+                      </div>
+                      <p className="text-gray-700 font-medium">Pembatalan pada hari-H akan dikenakan denda sebesar 50% dari total biaya sewa.</p>
+                    </li>
+                    <li className="flex gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-100">
+                          <span className="text-sm font-bold text-yellow-600">5</span>
+                        </div>
+                      </div>
+                      <p className="text-gray-700 font-medium">Harga sewa dengan supir belum termasuk biaya BBM, tol, parkir, dan akomodasi supir (jika keluar kota).</p>
+                    </li>
+                 </ul>
+               </CardContent>
+             </Card>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-5xl mx-auto mb-20">
+              <div className="space-y-2 mb-12">
+                <h2 className="text-4xl font-bold text-gray-900">Pertanyaan Umum</h2>
+                <div className="h-1 w-16 bg-gradient-to-r from-purple-600 to-purple-400 rounded-full"></div>
+              </div>
+
+              <Accordion type="single" collapsible className="w-full space-y-3">
+                <Card className="border-0 shadow-md hover:shadow-lg transition-shadow">
+                  <AccordionItem value="item-1" className="border-0">
+                    <AccordionTrigger className="font-semibold text-lg text-gray-900 hover:no-underline px-6 py-4">Dokumen apa saja yang diperlukan untuk sewa lepas kunci?</AccordionTrigger>
+                    <AccordionContent className="text-gray-600 px-6 pb-4 pt-2">
+                      Untuk sewa lepas kunci, kami memerlukan KTP, SIM A yang masih berlaku, dan bukti domisili (seperti tagihan listrik/air). Dokumen tambahan mungkin diperlukan untuk verifikasi lebih lanjut.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Card>
+
+                <Card className="border-0 shadow-md hover:shadow-lg transition-shadow">
+                  <AccordionItem value="item-2" className="border-0">
+                    <AccordionTrigger className="font-semibold text-lg text-gray-900 hover:no-underline px-6 py-4">Apakah bisa sewa untuk perjalanan luar kota?</AccordionTrigger>
+                    <AccordionContent className="text-gray-600 px-6 pb-4 pt-2">
+                      Tentu saja. Kami melayani perjalanan untuk dalam dan luar kota. Mohon informasikan destinasi Anda saat melakukan pemesanan agar kami dapat memberikan penawaran terbaik, termasuk estimasi akomodasi untuk supir.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Card>
+
+                <Card className="border-0 shadow-md hover:shadow-lg transition-shadow">
+                  <AccordionItem value="item-3" className="border-0">
+                    <AccordionTrigger className="font-semibold text-lg text-gray-900 hover:no-underline px-6 py-4">Bagaimana jika terjadi kerusakan pada mobil saat disewa?</AccordionTrigger>
+                    <AccordionContent className="text-gray-600 px-6 pb-4 pt-2">
+                      Harap segera hubungi tim kami jika terjadi kendala atau kerusakan. Kami akan memberikan panduan dan bantuan secepatnya. Untuk kerusakan ringan akibat kelalaian penyewa, biaya perbaikan akan dibebankan kepada penyewa.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Card>
+
+                <Card className="border-0 shadow-md hover:shadow-lg transition-shadow">
+                  <AccordionItem value="item-4" className="border-0">
+                    <AccordionTrigger className="font-semibold text-lg text-gray-900 hover:no-underline px-6 py-4">Apakah tersedia layanan antar-jemput mobil di bandara?</AccordionTrigger>
+                    <AccordionContent className="text-gray-600 px-6 pb-4 pt-2">
+                      Ya, kami menyediakan layanan antar-jemput kendaraan di Bandara Soekarno-Hatta, Halim Perdanakusuma, dan lokasi lain di Jabodetabek sesuai kesepakatan.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Card>
+              </Accordion>
+          </div>
+          
+          {/* CTA Final Section */}
+          <div className="max-w-4xl mx-auto">
+            <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-16 px-8 rounded-3xl shadow-2xl overflow-hidden">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              
+              <div className="relative z-10 text-center space-y-6">
+                <h3 className="text-4xl md:text-5xl font-black">Siap untuk Perjalanan Anda?</h3>
+                <p className="text-lg text-blue-100 max-w-2xl mx-auto leading-relaxed">
+                  Booking <span className="font-bold text-white">{car.name}</span> sekarang juga. Tim kami siap membantu Anda 24 jam untuk memastikan perjalanan Anda aman, nyaman, dan berkesan.
+                </p>
+                <Button asChild size="lg" className="bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-gray-900 font-bold text-lg rounded-full shadow-lg hover:shadow-2xl transition-all px-8 py-3">
+                  <a href="https://wa.me/6281315393681" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                    <Phone className="h-5 w-5" /> Hubungi via WhatsApp
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

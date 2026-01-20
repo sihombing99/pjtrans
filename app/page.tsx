@@ -1,10 +1,12 @@
-export const metadata = { title: ". | PJTrans", description: "Informasi . PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia." }
+export const metadata = { 
+  title: "Beranda | PJTrans", 
+  description: "Informasi PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia." 
+}
 export const dynamic = "force-dynamic"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Car, Shield, Users, MapPin, Clock, CheckCircle, Phone } from "lucide-react"
+import { Car, Shield, Users, MapPin, Clock, CheckCircle } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import prisma from "@/lib/prisma"
@@ -51,34 +53,27 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-slate-500 to-slate-300">
-        
-          <Image
-            src="/image/BG_pj.png?height=720&width=1080"
-            alt="Luxury cars with professional drivers"
-            fill
-            className="w-full h-full object-cover rounded-lg shadow-lg"
-            priority
-          />
+      <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-slate-500 to-slate-300 overflow-hidden">
+        <Image
+          src="/image/BG_pj.png?height=720&width=1080"
+          alt="Luxury cars with professional drivers"
+          fill
+          className="w-full h-full object-cover"
+          priority
+        />
         
         <div className="absolute bottom-8 left-0 z-10 text-left text-black max-w-4xl p-8 ml-16">
           <h1 className="text-5xl md:text-7xl font-bold mb-4">PJTrans</h1>
           <p className="text-xl md:text-2xl mb-2 text-black">PT Portama Jaya Transportasi</p>
           <p className="text-2xl md:text-3xl font-semibold mb-8 text-yellow-400">"Rent, Drive, To Explore"</p>
-          <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            Kami hadir untuk memberikan solusi transportasi yang fleksibel, aman, dan profesional ke seluruh pelosok
-            negeri. Berbagai jenis armada dari city car hingga kendaraan premium tersedia untuk Anda.
+          <p className="text-lg md:text-xl mb-8 max-w-3xl leading-relaxed">
+            Kami hadir untuk memberikan solusi transportasi yang fleksibel, aman, dan profesional ke seluruh pelosok negeri. Berbagai jenis armada dari city car hingga kendaraan premium tersedia untuk Anda.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button asChild size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">
               <Link href="/harga">Lihat Harga & Armada</Link>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-white text-black hover:bg-gray-200 hover:text-yellow-400 bg-transparent"
-            >
+            <Button asChild variant="outline" size="lg" className="border-white text-black hover:bg-gray-200 hover:text-yellow-400 bg-transparent">
               <Link href="/kontak">Hubungi Kami</Link>
             </Button>
           </div>
@@ -91,8 +86,7 @@ export default async function HomePage() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Tentang Perusahaan</h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              PT Portama Jaya Transportasi (PJTrans) adalah perusahaan penyedia jasa transportasi yang berdiri sejak
-              tahun 2022 dan telah melayani berbagai kebutuhan pelanggan dari skala individu hingga perusahaan besar.
+              PT Portama Jaya Transportasi (PJTrans) adalah perusahaan penyedia jasa transportasi yang berdiri sejak tahun 2022 dan telah melayani berbagai kebutuhan pelanggan dari skala individu hingga perusahaan besar.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed mt-4">
               Kami percaya bahwa kenyamanan, kecepatan, dan profesionalisme adalah fondasi dalam setiap perjalanan Anda.

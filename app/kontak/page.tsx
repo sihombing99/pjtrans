@@ -10,19 +10,23 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react"
 
-// Constants
+// Konfigurasi kontak
 const WHATSAPP_NUMBER = "6281315393681"
 const EMAIL = "portamajaya.transportasi@gmail.com"
 const PHONE = "0813-2919-5095"
+
 const OFFICE_ADDRESS = {
   building: "Ruko Apartemen Sakura Garden City No. 117",
   street: "Jl. Bina Marga No. 88, Cipayung",
   city: "Jakarta Timur",
 }
+
+// URL Google Maps dengan enkoding alamat
 const MAPS_URL = `https://maps.google.com/?q=${encodeURIComponent(
   `${OFFICE_ADDRESS.building} ${OFFICE_ADDRESS.street} ${OFFICE_ADDRESS.city}`
 )}`
 
+// Daftar kota layanan
 const SERVICE_CITIES = [
   "Jakarta", "Bandung", "Yogyakarta", "Surabaya", "Denpasar",
   "Medan", "Makassar", "Palembang", "Pekanbaru", "Semarang",
@@ -36,36 +40,37 @@ const SERVICE_CITIES = [
   "Ngawi", "Madiun", "Ponorogo", "Trenggalek", "Tulungagung",
 ]
 
+// Jam operasional
 const OPERATING_HOURS = [
   { day: "Senin - Jumat", hours: "08:00 - 22:00 WIB" },
   { day: "Sabtu - Minggu", hours: "08:00 - 20:00 WIB" },
   { day: "Emergency", hours: "24/7 via WhatsApp" },
 ]
 
-// Utility Functions
+// Generate URL untuk compose email di Gmail
 function generateGmailComposeUrl(email: string, name: string, userEmail: string, message: string): string {
   const subject = encodeURIComponent("Pesan dari Website PJTrans")
-  const body = encodeURIComponent(
-    `Nama: ${name}\nEmail: ${userEmail}\n\nPesan:\n${message}`
-  )
+  const body = encodeURIComponent(`Nama: ${name}\nEmail: ${userEmail}\n\nPesan:\n${message}`)
   return `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`
 }
 
-// Types
+// Type untuk form data
 interface FormData {
   name: string
   email: string
   message: string
 }
 
-interface ContactCardProps {
+// Komponen card kontak
+function ContactCard({ 
+  icon, 
+  title, 
+  children 
+}: { 
   icon: React.ReactNode
   title: string
   children: React.ReactNode
-}
-
-// Components
-function ContactCard({ icon, title, children }: ContactCardProps) {
+}) {
   return (
     <Card>
       <CardHeader>
@@ -76,11 +81,12 @@ function ContactCard({ icon, title, children }: ContactCardProps) {
   )
 }
 
+// Grid badge kota-kota layanan
 function ServiceCitiesBadges() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-h-96 overflow-y-auto">
-      {SERVICE_CITIES.map((city) => (
-        <Badge key={city} variant="outline" className="justify-center p-2">
+      {SERVICE_CITIES.map(city => (
+        <Badge key={city} variant="outline" className="justify-center p-2 text-xs">
           {city}
         </Badge>
       ))}
@@ -88,6 +94,7 @@ function ServiceCitiesBadges() {
   )
 }
 
+// Section peta lokasi kantor
 function MapSection() {
   return (
     <section className="mt-16">
@@ -111,55 +118,51 @@ function MapSection() {
   )
 }
 
-// Main Component
+// Halaman kontak utama
 export default function KontakPage() {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    message: "",
-  })
+  const [formData, setFormData] = useState<FormData>({ name: "", email: "", message: "" })
 
+  // Handle perubahan input form
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
+  // Handle submit form - redirect ke Gmail compose
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const gmailUrl = generateGmailComposeUrl(
-      EMAIL,
-      formData.name,
-      formData.email,
-      formData.message
-    )
+    const gmailUrl = generateGmailComposeUrl(EMAIL, formData.name, formData.email, formData.message)
     window.open(gmailUrl, "_blank")
   }
 
   return (
-    <div className="min-h-screen py-16">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Kontak Kami</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Hubungi tim profesional kami untuk konsultasi dan pemesanan layanan transportasi
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-white via-gray-50/50 to-white">
+      {/* Hero section */}
+      <div className="relative w-full bg-gradient-to-r from-[#001E3C] via-[#003B5C] to-[#005289] text-white overflow-hidden">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+        
+        <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight">Hubungi Kami</h1>
+            <p className="text-base md:text-lg text-blue-100 leading-relaxed">
+              Hubungi tim profesional kami untuk konsultasi dan pemesanan layanan transportasi
+            </p>
+          </div>
         </div>
+      </div>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Information Section */}
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        {/* Grid kontak dan form */}
+        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16">
+          {/* Kolom kontak info */}
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold mb-6 text-gray-800">Lokasi & Kontak</h2>
+            <h2 className="text-3xl font-bold text-gray-800">Lokasi & Kontak</h2>
 
-            {/* WhatsApp Card */}
-            <ContactCard
-              icon={<Phone className="h-5 w-5 text-green-500" />}
-              title="WhatsApp / Telepon"
-            >
+            <ContactCard icon={<Phone className="h-5 w-5 text-green-500" />} title="WhatsApp / Telepon">
               <p className="text-lg font-semibold text-green-600">{PHONE}</p>
               <p className="text-sm text-gray-600 mt-1">Layanan 24/7 untuk pemesanan darurat</p>
-              <Button asChild className="mt-3 bg-green-500 hover:bg-green-600">
+              <Button asChild className="mt-3 bg-green-500 hover:bg-green-600 w-full">
                 <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="h-4 w-4 mr-2" />
                   Chat WhatsApp
@@ -167,28 +170,16 @@ export default function KontakPage() {
               </Button>
             </ContactCard>
 
-            {/* Email Card */}
-            <ContactCard
-              icon={<Mail className="h-5 w-5 text-blue-500" />}
-              title="Email"
-            >
+            <ContactCard icon={<Mail className="h-5 w-5 text-blue-500" />} title="Email">
               <p className="text-lg font-semibold text-blue-600">{EMAIL}</p>
               <p className="text-sm text-gray-600 mt-1">Untuk pertanyaan detail dan penawaran khusus</p>
             </ContactCard>
 
-            {/* Address Card */}
-            <ContactCard
-              icon={<MapPin className="h-5 w-5 text-red-500" />}
-              title="Alamat Kantor"
-            >
+            <ContactCard icon={<MapPin className="h-5 w-5 text-red-500" />} title="Alamat Kantor">
               <p className="text-gray-700 leading-relaxed">
-                {OFFICE_ADDRESS.building}
-                <br />
-                {OFFICE_ADDRESS.street}
-                <br />
-                {OFFICE_ADDRESS.city}
+                {OFFICE_ADDRESS.building}<br />{OFFICE_ADDRESS.street}<br />{OFFICE_ADDRESS.city}
               </p>
-              <Button asChild variant="outline" className="mt-3 bg-transparent">
+              <Button asChild variant="outline" className="mt-3 w-full">
                 <a href={MAPS_URL} target="_blank" rel="noopener noreferrer">
                   <MapPin className="h-4 w-4 mr-2" />
                   Buka di Google Maps
@@ -196,45 +187,39 @@ export default function KontakPage() {
               </Button>
             </ContactCard>
 
-            {/* Operating Hours Card */}
-            <ContactCard
-              icon={<Clock className="h-5 w-5 text-purple-500" />}
-              title="Jam Operasional"
-            >
-              <div className="space-y-2 text-gray-700">
+            <ContactCard icon={<Clock className="h-5 w-5 text-purple-500" />} title="Jam Operasional">
+              <div className="space-y-2 text-gray-700 text-sm">
                 {OPERATING_HOURS.map(({ day, hours }) => (
-                  <p key={day}>
-                    <strong>{day}:</strong> {hours}
-                  </p>
+                  <p key={day}><strong>{day}:</strong> {hours}</p>
                 ))}
               </div>
             </ContactCard>
           </div>
 
-          {/* Contact Form Section */}
+          {/* Kolom form kontak */}
           <div>
             <h2 className="text-3xl font-bold mb-6 text-gray-800">Kirim Pesan ke Kami</h2>
             <Card>
               <CardHeader>
                 <CardTitle>Form Kontak</CardTitle>
-                <CardDescription>Isi form di bawah ini dan kami akan menghubungi Anda dalam 24 jam</CardDescription>
+                <CardDescription>Kami akan menghubungi Anda dalam 24 jam</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="name">Nama Lengkap</Label>
+                    <Label htmlFor="name" className="text-sm">Nama Lengkap</Label>
                     <Input
                       id="name"
                       name="name"
                       type="text"
-                      placeholder="Masukkan nama lengkap Anda"
+                      placeholder="Masukkan nama Anda"
                       value={formData.name}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email" className="text-sm">Email</Label>
                     <Input
                       id="email"
                       name="email"
@@ -246,12 +231,12 @@ export default function KontakPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="message">Pesan</Label>
+                    <Label htmlFor="message" className="text-sm">Pesan</Label>
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder="Ceritakan kebutuhan transportasi Anda..."
-                      rows={5}
+                      placeholder="Ceritakan kebutuhan Anda..."
+                      rows={4}
                       value={formData.message}
                       onChange={handleInputChange}
                       required
@@ -267,24 +252,19 @@ export default function KontakPage() {
           </div>
         </div>
 
-        {/* Service Areas Section */}
-        <section className="mt-16">
+        {/* Section area layanan */}
+        <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Area Layanan</h2>
           <Card className="max-w-6xl mx-auto">
             <CardHeader className="text-center">
               <CardTitle>Kami Melayani 80+ Kota Besar di Indonesia</CardTitle>
-              <CardDescription>Scroll list kota atau ketik nama kota Anda untuk cek layanan kami</CardDescription>
             </CardHeader>
             <CardContent>
               <ServiceCitiesBadges />
-              <div className="mt-6 text-center">
-                <p className="text-gray-600 mb-4">Tidak menemukan kota Anda dalam daftar? Jangan khawatir!</p>
-                <Button asChild variant="outline">
-                  <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Halo, saya ingin menanyakan ketersediaan layanan di kota...`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+              <div className="mt-6 text-center space-y-3">
+                <p className="text-gray-600">Tidak menemukan kota Anda?</p>
+                <Button asChild variant="outline" className="w-full">
+                  <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=Halo, saya ingin menanyakan ketersediaan layanan...`} target="_blank" rel="noopener noreferrer">
                     Tanyakan Ketersediaan Layanan
                   </a>
                 </Button>
