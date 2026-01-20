@@ -61,9 +61,9 @@ export default async function HomePage() {
             priority
           />
         
-        <div className="absolute bottom-8 left-0 z-10 text-left text-white max-w-4xl p-8 ml-16">
+        <div className="absolute bottom-8 left-0 z-10 text-left text-black max-w-4xl p-8 ml-16">
           <h1 className="text-5xl md:text-7xl font-bold mb-4">PJTrans</h1>
-          <p className="text-xl md:text-2xl mb-2 text-gray-200">PT Portama Jaya Transportasi</p>
+          <p className="text-xl md:text-2xl mb-2 text-black">PT Portama Jaya Transportasi</p>
           <p className="text-2xl md:text-3xl font-semibold mb-8 text-yellow-400">"Rent, Drive, To Explore"</p>
           <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
             Kami hadir untuk memberikan solusi transportasi yang fleksibel, aman, dan profesional ke seluruh pelosok
@@ -77,7 +77,7 @@ export default async function HomePage() {
               asChild
               variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-black bg-transparent"
+              className="border-white text-black hover:bg-gray-200 hover:text-yellow-400 bg-transparent"
             >
               <Link href="/kontak">Hubungi Kami</Link>
             </Button>
