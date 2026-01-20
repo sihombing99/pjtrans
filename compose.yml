@@ -2,6 +2,7 @@ services:
   web:
     image: ikhsan123/pjtrans:latest
     container_name: pjtrans
+    restart: unless-stopped
     environment:
       NODE_ENV: production
       DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@db:5432/mydb?schema=public}
@@ -20,6 +21,7 @@ services:
   db:
     image: postgres:16
     container_name: db
+    restart: unless-stopped
     environment:
       POSTGRES_DB: pjtrans
       POSTGRES_USER: postgres
@@ -32,6 +34,7 @@ services:
   adminer:
     image: adminer:latest
     container_name: adminer
+    restart: unless-stopped
     depends_on:
       - db
     networks:
