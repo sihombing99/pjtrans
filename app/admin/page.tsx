@@ -18,7 +18,10 @@ type Car = {
   price: string;
   category: string;
   image: string;
-  content: string; // 'content' sekarang ada di level Car
+  content: string;
+  year?: number;
+  seats?: number;
+  transmission?: string;
   services?: Service[];
 };
 
@@ -27,7 +30,10 @@ export default function AdminPage() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [content, setContent] = useState(""); 
+  const [content, setContent] = useState("");
+  const [year, setYear] = useState("");
+  const [seats, setSeats] = useState("");
+  const [transmission, setTransmission] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   // State utama
@@ -75,6 +81,9 @@ export default function AdminPage() {
     setName(car.name);
     setPrice(car.price);
     setCategory(car.category);
+    setYear(car.year?.toString() || "");
+    setSeats(car.seats?.toString() || "");
+    setTransmission(car.transmission || "");
     setImageFile(null);
 
     try {
@@ -114,7 +123,16 @@ export default function AdminPage() {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           // Kirim 'content' di level atas sesuai dengan API
-          body: JSON.stringify({ name, price, category, content, services: currentServices }),
+          body: JSON.stringify({ 
+            name, 
+            price, 
+            category, 
+            content,
+            year: year ? parseInt(year) : null,
+            seats: seats ? parseInt(seats) : null,
+            transmission,
+            services: currentServices 
+          }),
         });
         if (!response.ok) {
             const err = await response.json();
@@ -149,7 +167,10 @@ export default function AdminPage() {
     setName("");
     setPrice("");
     setCategory("");
-    setContent(""); 
+    setContent("");
+    setYear("");
+    setSeats("");
+    setTransmission("");
     setImageFile(null);
     setCurrentServices([]);
     form.reset();
@@ -164,6 +185,34 @@ export default function AdminPage() {
           <input type="text" placeholder="Nama Mobil" value={name} onChange={(e) => setName(e.target.value)} required className="w-full p-2 border rounded"/>
           <input type="text" placeholder="Harga Mulai Dari" value={price} onChange={(e) => setPrice(e.target.value)} required className="w-full p-2 border rounded"/>
           <input type="text" placeholder="Kategori" value={category} onChange={(e) => setCategory(e.target.value)} required className="w-full p-2 border rounded"/>
+          
+          {/* Tambahan: Tahun, Seats, Transmisi */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input 
+              type="number" 
+              placeholder="Tahun (contoh: 2019)" 
+              value={year} 
+              onChange={(e) => setYear(e.target.value)} 
+              className="w-full p-2 border rounded"
+            />
+            <input 
+              type="number" 
+              placeholder="Jumlah Seat (contoh: 5)" 
+              value={seats} 
+              onChange={(e) => setSeats(e.target.value)} 
+              className="w-full p-2 border rounded"
+            />
+            <select 
+              value={transmission} 
+              onChange={(e) => setTransmission(e.target.value)} 
+              className="w-full p-2 border rounded"
+            >
+              <option value="">Pilih Transmisi</option>
+              <option value="Manual">Manual</option>
+              <option value="Matic">Matic</option>
+              <option value="Auto">Auto</option>
+            </select>
+          </div>
           
           {!editingCar && (
             <input type="file" required onChange={(e) => e.target.files && setImageFile(e.target.files[0])} className="w-full"/>
@@ -211,6 +260,9 @@ export default function AdminPage() {
                   setPrice('');
                   setCategory('');
                   setContent('');
+                  setYear('');
+                  setSeats('');
+                  setTransmission('');
                   setCurrentServices([]);
               }} className="bg-gray-500 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600">
                 Batal

@@ -32,6 +32,10 @@ type Car = {
   price: string
   category: string
   image: string | null
+  year?: number | null // Change this line to allow null
+  seats?: number | null // Allow null for seats
+  transmission?: string | null
+  services?: Array<{ type: string; price: string; description: string }>
 }
 
 // Cek apakah harga adalah "Hubungi" untuk styling khusus
@@ -47,9 +51,29 @@ async function fetchCars(): Promise<Car[]> {
   try {
     const cars = await prisma.car.findMany({
       orderBy: { id: "desc" },
-      select: { id: true, name: true, price: true, category: true, image: true },
+      select: { 
+        id: true, 
+        name: true, 
+        price: true, 
+        category: true, 
+        image: true,
+        year: true,
+        seats: true,
+        transmission: true,
+        services: true
+      },
     })
-    return cars.map(car => ({ ...car, image: car.image ?? null }))
+    return cars.map(car => ({ 
+      ...car, 
+      image: car.image ?? null,
+      name: car.name || "Nama tidak tersedia",
+      price: car.price || "Hubungi",
+      category: car.category || "Umum",
+      transmission: car.transmission || null,
+      year: car.year || null,
+      seats: car.seats || null, 
+      services: car.services || []
+    }))
   } catch (error) {
     console.error("Database error:", error)
     return []
@@ -80,60 +104,96 @@ function VehicleCategory({
 function VehicleCard({ car }: { car: Car }) {
   const priceColor = getPriceColor(car.price)
   const whatsappMessage = buildWhatsAppMessage(car.name)
+  
+  // Ambil 2 service pertama jika ada
+  const displayServices = car.services?.slice(0, 2) || []
 
   return (
     <Card id={String(car.id)} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
       {/* Container gambar dengan hover effect */}
-      <div className="relative h-56 w-full bg-gray-200 overflow-hidden group">
+      <div className="relative h-40 w-full bg-gray-200 overflow-hidden group">
         <Image
           src={car.image || "/placeholder.svg"}
           alt={car.name}
           fill
           unoptimized
           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
           priority={car.id <= 3}
         />
         {/* Badge PJTrans */}
-        <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full shadow-md">
+        <div className="absolute top-2 left-2 bg-white px-2 py-0.5 rounded-full shadow-md">
           <span className="text-xs font-semibold text-blue-600 uppercase">PJTrans</span>
         </div>
         {/* Badge kategori */}
-        <div className="absolute top-16 left-4">
+        <div className="absolute top-2 right-2">
           <Badge variant="secondary" className="font-medium text-xs">{car.category}</Badge>
         </div>
       </div>
 
       {/* Info harga dan nama */}
       <div className="flex-1 flex flex-col">
-        <div className="text-center p-4">
-          <h3 className="text-lg font-bold text-gray-800 line-clamp-2">{car.name}</h3>
-          <p className={`text-2xl font-bold ${priceColor} mt-2`}>{car.price}</p>
+        <div className="text-center p-2">
+          <h3 className="text-sm font-bold text-gray-800 line-clamp-2">{car.name}</h3>
+          <p className={`text-lg font-bold ${priceColor} mt-1`}>{car.price}</p>
         </div>
 
+        {/* Info Detail Mobil: Tahun, Seat, Transmisi */}
+        <div className="px-2 py-1 border-t border-gray-200 grid grid-cols-3 gap-1 text-center text-xs">
+          <div>
+            <p className="text-gray-600 text-xs">Tahun</p>
+            <p className="font-semibold text-gray-800">{car.year || '-'}</p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-xs">Seat</p>
+            <p className="font-semibold text-gray-800">{car.seats || '-'}</p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-xs">Transmisi</p>
+            <p className="font-semibold text-gray-800">{car.transmission || '-'}</p>
+          </div>
+        </div>
+
+        {/* Rincian Layanan - 2 service pertama */}
+        {displayServices.length > 0 && (
+          <div className="px-2 py-1 border-t border-gray-200 space-y-1">
+            {displayServices.map((service, idx) => (
+              <div key={idx} className="text-xs">
+                <div className="flex justify-between items-start">
+                  <span className="text-gray-700 font-medium">{service.type}</span>
+                  <span className="text-blue-600 font-semibold">{service.price}</span>
+                </div>
+                {service.description && (
+                  <p className="text-gray-500 text-xs mt-0.5">{service.description}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Tombol aksi */}
-        <div className="p-4 pt-0 mt-auto space-y-2">
+        <div className="p-2 mt-auto space-y-1 border-t border-gray-200">
           <Button
             asChild
-            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium text-sm"
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium text-xs py-1 h-auto"
             size="sm"
           >
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2"
+              className="flex items-center justify-center gap-1"
             >
-              <Phone className="h-4 w-4" />
+              <Phone className="h-3 w-3" />
               Chat WhatsApp
             </a>
           </Button>
           <Button
             asChild
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs py-1 h-auto"
             size="sm"
           >
-            <a href={`/detail/${car.id}`} className="flex items-center justify-center gap-2">
+            <a href={`/detail/${car.id}`} className="flex items-center justify-center gap-1">
               Detail Mobil
             </a>
           </Button>
@@ -167,7 +227,7 @@ function VehiclesSection({ cars }: { cars: Car[] }) {
           <p className="text-gray-600 text-lg">Belum ada data kendaraan tersedia</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {cars.map(car => <VehicleCard key={car.id} car={car} />)}
         </div>
       )}
