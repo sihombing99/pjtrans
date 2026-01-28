@@ -34,6 +34,9 @@ export async function POST(request: Request) {
     const name = data.get("name") as string;
     const price = data.get("price") as string;
     const category = data.get("category") as string;
+    const year = data.get("year") as string;
+    const seats = data.get("seats") as string;
+    const transmission = data.get("transmission") as string;
     const imageFile = data.get("image") as File;
 
     if (!name || !price || !category || !imageFile) {
@@ -57,6 +60,9 @@ export async function POST(request: Request) {
         name: name,
         price: price,
         category: category,
+        year: parseInt(year),
+        seats: parseInt(seats),
+        transmission: transmission,
         image: imageUrlForDb,
       },
     });

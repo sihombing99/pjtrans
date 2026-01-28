@@ -17,6 +17,9 @@ type Car = {
   name: string;
   price: string;
   category: string;
+  year: number|null;
+  seats: number| null;
+  transmission: string;
   image: string | null;
   services: Array<{
     id: number;
@@ -43,6 +46,9 @@ export default async function HomePage() {
       name: car.name,
       price: car.price,
       category: car.category,
+      year: car.year,
+      seats: car.seats,
+      transmission: car.transmission,
       image: car.image ?? null,
       services: car.services,
     }))

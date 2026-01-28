@@ -32,8 +32,8 @@ type Car = {
   price: string
   category: string
   image: string | null
-  year?: number | null // Change this line to allow null
-  seats?: number | null // Allow null for seats
+  year: number | null // Change this line to allow null
+  seats: number | null // Allow null for seats
   transmission?: string | null
   services?: Array<{ type: string; price: string; description: string }>
 }
