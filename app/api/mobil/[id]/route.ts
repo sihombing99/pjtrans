@@ -48,33 +48,35 @@ export async function PUT(
         return NextResponse.json({ message: "ID tidak valid" }, { status: 400 });
     }
 
-    // Menerima JSON dengan 'content' di level atas, bukan di dalam services
-    const { name, price, category, content, services } = await request.json();
+    const { name, price, category, content, year, seats, transmission, services } = await request.json();
 
-    if (!name || !price || !category||!content)   {
+    if (!name || !price || !category || !content) {
       return NextResponse.json(
-        { message: "Nama, harga, dan kategori harus diisi" },
+        { message: "Nama, harga, kategori, dan konten harus diisi" },
         { status: 400 }
       );
     }
 
-    // Menggunakan Prisma Transaction untuk menjaga konsistensi data
     await prisma.$transaction(async (tx) => {
-      // 1. Update data utama mobil, sekarang termasuk 'content'
       await tx.car.update({
         where: { id },
-        data: { name, price, category, content }, // 'content' diupdate di sini
+        data: { 
+          name, 
+          price, 
+          category, 
+          content,
+          year: year ? parseInt(year) : null,
+          seats: seats ? parseInt(seats) : null,
+          transmission: transmission || ""
+        },
       });
 
-      // 2. Hapus semua service lama
       await tx.service.deleteMany({
         where: { carId: id },
       });
 
-      // 3. Buat ulang semua service (sekarang tanpa 'content')
       if (services && Array.isArray(services) && services.length > 0) {
         await tx.service.createMany({
-          // Pastikan 'content' tidak ada di sini
           data: services.map((service: { type: string; price: string; description: string; }) => ({
             type: service.type,
             price: service.price,

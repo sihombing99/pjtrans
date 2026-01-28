@@ -10,6 +10,7 @@ import { Car, Shield, Users, MapPin, Clock, CheckCircle } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import prisma from "@/lib/prisma"
+import { Slideshow } from "@/components/slideshow"
 
 // Type definition for Car with Services
 type Car = {
@@ -59,30 +60,14 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-slate-500 to-slate-300 overflow-hidden">
-        <Image
-          src="/image/BG_pj.png?height=720&width=1080"
-          alt="Luxury cars with professional drivers"
-          fill
-          className="w-full h-full object-cover"
-          priority
-        />
-        
-        <div className="absolute bottom-8 left-0 z-10 text-left text-black max-w-4xl p-8 ml-16">
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">PJTrans</h1>
-          <p className="text-xl md:text-2xl mb-2 text-black">PT Portama Jaya Transportasi</p>
-          <p className="text-2xl md:text-3xl font-semibold mb-8 text-yellow-400">"Rent, Drive, To Explore"</p>
-          <p className="text-lg md:text-xl mb-8 max-w-3xl leading-relaxed">
-            Kami hadir untuk memberikan solusi transportasi yang fleksibel, aman, dan profesional ke seluruh pelosok negeri. Berbagai jenis armada dari city car hingga kendaraan premium tersedia untuk Anda.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">
-              <Link href="/harga">Lihat Harga & Armada</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="border-white text-black hover:bg-gray-200 hover:text-yellow-400 bg-transparent">
-              <Link href="/kontak">Hubungi Kami</Link>
-            </Button>
-          </div>
+      <section className="relative h-150 w-full flex items-center justify-center bg-gradient-to-r from-slate-300 to-slate-00 overflow-hidden">
+        <Slideshow />
+      </section>
+
+      {/* Slideshow Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+         
         </div>
       </section>
 
@@ -368,15 +353,7 @@ export default async function HomePage() {
                //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
               />
             </div>
-               <div className="flex justify-center">
-              <Image
-                src="/image/pntng.png?height=100&width=200&text=Partner+3"
-                alt="Partner 3"
-                width={200}
-                height={100}
-               //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-            </div>
+
             <div className="flex justify-center">
               <Image
                 src="/image/mitra1.jpg?height=100&width=200&text=Partner+4"

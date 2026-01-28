@@ -38,3 +38,11 @@ model User {
   password String
 }
 
+model Slideshow {
+  id        Int     @id @default(autoincrement())
+  imageUrl  String
+  isActive  Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+

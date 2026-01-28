@@ -34,10 +34,12 @@ export async function POST(request: Request) {
     const name = data.get("name") as string;
     const price = data.get("price") as string;
     const category = data.get("category") as string;
+    const content = data.get("content") as string;
     const year = data.get("year") as string;
     const seats = data.get("seats") as string;
     const transmission = data.get("transmission") as string;
     const imageFile = data.get("image") as File;
+    const servicesJson = data.get("services") as string;
 
     if (!name || !price || !category || !imageFile) {
       return NextResponse.json(
@@ -55,16 +57,35 @@ export async function POST(request: Request) {
     
     const imageUrlForDb = `/uploads/${uniqueFileName}`;
 
+    // Parse services dari JSON
+    let services = [];
+    if (servicesJson) {
+      try {
+        services = JSON.parse(servicesJson);
+      } catch (e) {
+        console.error("Error parsing services:", e);
+      }
+    }
+
     const newCar = await prisma.car.create({
       data: {
         name: name,
         price: price,
         category: category,
-        year: parseInt(year),
-        seats: parseInt(seats),
-        transmission: transmission,
+        content: content || "",
+        year: year ? parseInt(year) : null,
+        seats: seats ? parseInt(seats) : null,
+        transmission: transmission || "",
         image: imageUrlForDb,
+        services: {
+          create: services.map((service: { type: string; price: string; description: string; }) => ({
+            type: service.type,
+            price: service.price,
+            description: service.description,
+          }))
+        }
       },
+      include: { services: true }
     });
 
     return NextResponse.json(newCar, { status: 201 });
