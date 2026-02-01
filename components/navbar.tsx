@@ -21,6 +21,7 @@ const navigation = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
+  const isAdmin = !!pathname && pathname.startsWith("/admin")
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
@@ -55,6 +56,29 @@ export function Navbar() {
                   {item.name}
                 </Link>
               ))}
+              {/* Admin-only links when on admin routes */}
+              {isAdmin && (
+                <>
+                  <Link
+                    href="/admin"
+                    className={cn(
+                      "text-base font-semibold transition-colors hover:text-blue-600 whitespace-nowrap",
+                      pathname === "/admin/tambah-mobil" ? "text-blue-600" : "text-gray-700",
+                    )}
+                  >
+                    Tambah Mobil
+                  </Link>
+                  <Link
+                    href="/admin/slideshow"
+                    className={cn(
+                      "text-base font-semibold transition-colors hover:text-blue-600 whitespace-nowrap",
+                      pathname === "/admin/slideshow" ? "text-blue-600" : "text-gray-700",
+                    )}
+                  >
+                    Slideshow
+                  </Link>
+                </>
+              )}
             </nav>
           </div>
 
@@ -81,7 +105,44 @@ export function Navbar() {
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              {/* ... Isi SheetContent tetap sama ... */}
+              <SheetContent side="right" className="w-64">
+                <div className="flex flex-col p-4 gap-3">
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={cn(
+                        "text-base font-semibold transition-colors hover:text-blue-600",
+                        pathname === item.href ? "text-blue-600" : "text-gray-700",
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  {isAdmin && (
+                    <>
+                      <Link
+                        href="/admin/tambah-mobil"
+                        className={cn(
+                          "text-base font-semibold transition-colors hover:text-blue-600",
+                          pathname === "/admin/tambah-mobil" ? "text-blue-600" : "text-gray-700",
+                        )}
+                      >
+                        Tambah Mobil
+                      </Link>
+                      <Link
+                        href="/admin/slideshow"
+                        className={cn(
+                          "text-base font-semibold transition-colors hover:text-blue-600",
+                          pathname === "/admin/slideshow" ? "text-blue-600" : "text-gray-700",
+                        )}
+                      >
+                        Slideshow
+                      </Link>
+                    </>
+                  )}
+                </div>
+              </SheetContent>
             </Sheet>
           </div>
 

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Clock, Car, Users, Plane, MapPin, Building, Star, Globe } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import ServiceCard from "@/components/service-card"
 
 export default function LayananPage() {
 
@@ -143,24 +144,8 @@ export default function LayananPage() {
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Layanan yang Tersedia</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {services.map((service, index) => (
-              <Card key={index} className="h-full hover:shadow-lg transition-all duration-300">
-                <CardHeader className="text-center">
-                  <div className="mx-auto mb-4">{service.icon}</div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription>{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
-                        <Star className="h-4 w-4 text-yellow-500" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+            {services.map((s, i) => (
+              <ServiceCard key={i} icon={s.icon} title={s.title} description={s.description} features={s.features} />
             ))}
           </div>
         </section>
