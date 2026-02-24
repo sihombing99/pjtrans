@@ -1,13 +1,28 @@
 import type { MetadataRoute } from 'next'
+import prisma from '@/lib/prisma'
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://pjtransindonesia.com/'
-  const routes = ['', '/layanan', '/harga', '/tentang', '/kontak']
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const base = 'https://www.pjtrans.co.id'
+  const staticRoutes = ['', '/layanan', '/harga', '/tentang', '/kontak', '/detail']
   const now = new Date().toISOString()
-  return routes.map((r) => ({
+
+  // build static route entries (url + lastModified)
+  const staticEntries = staticRoutes.map((r) => ({
     url: base + r,
     lastModified: now,
-    changeFrequency: 'monthly',
-    priority: r === '' ? 1 : 0.8
   }))
+
+  // fetch vehicle pages (dynamic)
+  try {
+    const cars = await prisma.car.findMany({ select: { id: true } })
+    const carEntries = cars.map((c) => ({
+      url: `${base}/detail/${c.id}`,
+      lastModified: now,
+    }))
+
+    return [...staticEntries, ...carEntries]
+  } catch (error) {
+    console.error('Error building sitemap:', error)
+    return staticEntries
+  }
 }

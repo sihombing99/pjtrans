@@ -1,8 +1,16 @@
 // File: app/harga/page.tsx
 
 export const metadata = {
-  title: "Harga & Armada | PJTrans",
-  description: "Informasi Harga & Armada PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia.",
+  title: "Harga Rental Mobil Murah Terbaik - Sewa Mobil Jakarta | PJTrans",
+  description: "Lihat harga dan daftar armada rental mobil terbaik. Rental mobil murah, terpercaya, dengan berbagai pilihan. Booking mudah, harga kompetitif, sewa mobil terjangkau di PJTrans.",
+  alternates: { canonical: 'https://pjtrans.co.id/harga' },
+  openGraph: {
+    title: 'Harga Rental Mobil Murah Terbaik - Sewa Mobil Jakarta',
+    description: 'Daftar lengkap armada rental mobil dengan harga terbaru. Sewa mobil berkualitas, terpercaya, dengan harga terjangkau dari PJTrans.',
+    url: 'https://pjtrans.co.id/harga',
+    images: ['/image/logo.webp']
+  },
+  twitter: { card: 'summary_large_image', creator: '@pjtrans' }
 }
 export const dynamic = "force-dynamic"
 
@@ -93,11 +101,12 @@ function VehicleCard({ car }: { car: Car }) {
     <Card id={String(car.id)} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
       {/* Container gambar dengan hover effect */}
       <div className="relative h-40 w-full bg-gray-200 overflow-hidden group">
-        <Image
+                <Image
           src={car.image || "/placeholder.svg"}
           alt={car.name}
           fill
           unoptimized
+          loading={car.id <= 3 ? 'eager' : 'lazy'}
           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
           priority={car.id <= 3}
@@ -222,6 +231,33 @@ export default async function HargaPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50/50 to-white">
+      {/* CollectionPage schema with AggregateOffer for all vehicles */}
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: 'Daftar Harga Rental Mobil Murah Terbaik - PJTrans',
+            url: 'https://pjtrans.co.id/harga',
+            description: 'Daftar lengkap armada dan harga rental mobil murah terbaik dari PJTrans. Sewa mobil terpercaya, berkualitas, dengan harga terjangkau. Booking mudah untuk rental mobil harian, bulanan, dan bandara.',
+            keywords: 'harga rental mobil, harga sewa mobil, rental mobil murah, rental mobil terjangkau, rental mobil terbaik, harga rental jakarta, daftar harga sewa mobil, rental mobil berkualitas',
+            mainEntity: {
+              '@type': 'AggregateOffer',
+              'priceCurrency': 'IDR',
+              'offerCount': cars.length,
+              'offers': cars.slice(0, 10).map(car => ({
+                '@type': 'Offer',
+                'name': car.name,
+                'price': car.price === 'Hubungi' ? '0' : car.price,
+                'url': `https://pjtrans.co.id/detail/${car.id}`,
+                'availability': 'https://schema.org/InStock'
+              }))
+            }
+          })
+        }}
+      />
       {/* Hero section dengan gradient biru tua */}
       <div className="relative w-full bg-gradient-to-r from-[#001E3C] via-[#003B5C] to-[#005289] text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>

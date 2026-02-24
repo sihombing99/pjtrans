@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 
+// Mark route as dynamic to avoid static prerendering issues
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
+    // Use request.nextUrl to access search params without making the route
+    // treated as dynamic due to `new URL(request.url)` usage.
+    const { searchParams } = request.nextUrl
     const category = searchParams.get('category')
 
     let where = {}

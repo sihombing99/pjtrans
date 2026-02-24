@@ -1,6 +1,14 @@
-export const metadata = { 
-  title: "Tentang Kami | PJTrans", 
-  description: "Informasi Tentang Kami PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia." 
+export const metadata = {
+  title: "Tentang PJTrans — PT Portama Jaya Transportasi",
+  description: "Pelajari sejarah, visi misi, dan tim di balik PJTrans. Komitmen kami: armada terawat dan layanan profesional.",
+  alternates: { canonical: 'https://pjtrans.co.id/tentang' },
+  openGraph: {
+    title: 'Tentang PJTrans — PT Portama Jaya Transportasi',
+    description: 'Informasi perusahaan PJTrans, visi & misi, sejarah, dan layanan yang kami sediakan.',
+    url: 'https://pjtrans.co.id/tentang',
+    images: ['/image/logo.webp']
+  },
+  twitter: { card: 'summary', creator: '@pjtrans' }
 }
 
 export const dynamic = 'force-dynamic'
@@ -109,6 +117,76 @@ export default async function TentangPage() {
  
    return (
      <div className="min-h-screen bg-gradient-to-b from-white via-gray-50/50 to-white">
+       {/* Services schema for all offerings */}
+       <script
+         type="application/ld+json"
+         suppressHydrationWarning
+         dangerouslySetInnerHTML={{
+           __html: JSON.stringify({
+             '@context': 'https://schema.org',
+             '@type': 'Organization',
+             '@id': 'https://pjtrans.co.id',
+             'name': 'PJTrans - Rental Mobil Murah Terbaik Terpercaya',
+             'description': 'Penyedia layanan rental mobil terpercaya dan terbaik di Jakarta dan seluruh Indonesia. Rental mobil murah dengan sopir profesional, lepas kunci, dan berbagai pilihan armada berkualitas.',
+             'keywords': 'rental mobil, sewa mobil, rental mobil murah, rental mobil terbaik, rental mobil terpercaya, rental mobil berkualitas, rental mobil 24/7, rental mobil lepas kunci, rental mobil dengan sopir, sewa mobil profesional, rental mobil terjangkau, rental mobil online',
+             'hasOfferCatalog': {
+               '@type': 'OfferCatalog',
+               'name': 'Layanan Sewa Mobil Murah Terpercaya - PJTrans',
+               'description': 'Layanan rental mobil terlengkap dengan harga murah dan terjangkau',
+               'itemListElement': [
+                 {
+                   '@type': 'Service',
+                   'name': 'Rental Mobil Murah - Sewa Mobil Terjangkau',
+                   'description': 'Sewa mobil murah dengan berbagai pilihan kendaraan berkualitas, harga terjangkau, dan proses booking cepat. Rental mobil terpercaya untuk kebutuhan perjalanan Anda dengan armada yang terawat.',
+                   'keywords': 'rental mobil murah, sewa mobil terjangkau, rental mobil berkualitas, sewa mobil murah jakarta',
+                   'provider': { '@type': 'Organization', 'name': 'PJTrans' },
+                   'areaServed': 'ID'
+                 },
+                 {
+                   '@type': 'Service',
+                   'name': 'Rental Mobil dengan Sopir - Sewa Mobil Profesional',
+                   'description': 'Sopir profesional berpengalaman, terlatih, berseragam rapi, dan ramah. Sewa mobil dengan sopir terpercaya untuk perjalanan aman, nyaman, dan tepat waktu. Rental mobil terbaik untuk kebutuhan bisnis dan wisata.',
+                   'keywords': 'rental mobil dengan sopir, sewa mobil sopir profesional, rental mobil terpercaya, sewa mobil dengan driver',
+                   'provider': { '@type': 'Organization', 'name': 'PJTrans' },
+                   'areaServed': 'ID'
+                 },
+                 {
+                   '@type': 'Service',
+                   'name': 'Rental Mobil Harian - Sewa Singkat Murah',
+                   'description': 'Rental mobil 6-24 jam dengan harga kompetitif, cocok untuk kegiatan singkat, perjalanan dadakan, dan acara mendadak. Sewa mobil harian terpercaya dengan armada siap pakai. Harga rental mobil harian terjangkau.',
+                   'keywords': 'rental mobil harian, sewa mobil harian, rental mobil 24 jam, rental mobil harian murah',
+                   'provider': { '@type': 'Organization', 'name': 'PJTrans' },
+                   'areaServed': 'ID'
+                 },
+                 {
+                   '@type': 'Service',
+                   'name': 'Rental Mobil Bulanan - Sewa Jangka Panjang Hemat',
+                   'description': 'Sewa mobil bulanan untuk operasional kantor dan perusahaan dengan hemat biaya, kontrak jangka panjang fleksibel, dan maintenance included. Rental mobil terbaik untuk kebutuhan bisnis jangka panjang.',
+                   'keywords': 'rental mobil bulanan, sewa mobil bulanan, rental mobil jangka panjang, sewa kantor bulanan',
+                   'provider': { '@type': 'Organization', 'name': 'PJTrans' },
+                   'areaServed': 'ID'
+                 },
+                 {
+                   '@type': 'Service',
+                   'name': 'Rental Mobil Bandara - Sewa Antar-Jemput 24/7',
+                   'description': 'Layanan rental mobil bandara 24/7 dengan flight tracking dan meet & greet. Sewa mobil bandara terpercaya untuk penerbangan domestik dan internasional. Rental mobil airport dengan sopir profesional.',
+                   'keywords': 'rental mobil bandara, sewa mobil bandara, rental mobil antar jemput, layanan bandara 24/7, sewa mobil airport',
+                   'provider': { '@type': 'Organization', 'name': 'PJTrans' },
+                   'areaServed': 'ID'
+                 },
+                 {
+                   '@type': 'Service',
+                   'name': 'Rental Mobil Lepas Kunci - Sewa Mandiri',
+                   'description': 'Sewa mobil lepas kunci tanpa sopir dengan persyaratan mudah. Rental mobil self-drive untuk pelanggan yang ingin mengemudi sendiri. Proses cepat, dokumen lengkap, dan armada berkualitas.',
+                   'keywords': 'rental mobil lepas kunci, sewa mobil tanpa sopir, rental mobil self-drive',
+                   'provider': { '@type': 'Organization', 'name': 'PJTrans' },
+                   'areaServed': 'ID'
+                 }
+               ]
+             }
+           })
+         }}
+       />
        {/* Hero Section */}
        <div className="relative w-full bg-gradient-to-r from-[#001E3C] via-[#003B5C] to-[#005289] text-white overflow-hidden">
          <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>

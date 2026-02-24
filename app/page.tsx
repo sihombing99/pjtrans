@@ -1,6 +1,14 @@
-export const metadata = { 
-  title: "Beranda | PJTrans", 
-  description: "Informasi PJTrans – PT Portama Jaya Transportasi. Layanan sewa mobil profesional di Jabodetabek dan seluruh Indonesia." 
+export const metadata = {
+  title: "Rental Mobil Murah Terbaik Jakarta - PJTrans | Sewa Mobil Terpercaya",
+  description: "Rental mobil murah terbaik dengan sopir profesional atau lepas kunci. PJTrans: sewa mobil terpercaya, armada berkualitas, harga terjangkau, melayani 80+ kota Indonesia.",
+  alternates: { canonical: 'https://pjtrans.co.id/' },
+  openGraph: {
+    title: 'Rental Mobil Murah Terbaik Jakarta - PJTrans',
+    description: 'Sewa mobil harian, bulanan, rental mobil bandara dari PJTrans. Rental mobil terpercaya dengan sopir profesional dan harga kompetitif.',
+    url: 'https://pjtrans.co.id/',
+    images: ['/image/logo.webp']
+  },
+  twitter: { card: 'summary_large_image', creator: '@pjtrans' }
 }
 export const dynamic = "force-dynamic"
 
@@ -86,7 +94,7 @@ export default async function HomePage() {
       {/* Our Fleet Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Pilih Armada Sesuai Kebutuhan Anda</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Pilih Kendaraan Sesuai Kebutuhan Anda</h2>
            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
             {VEHICLE_CATEGORIES.map(({ label, color }) => (
             <VehicleCategoryCard key={label} label={label} color={color} />
@@ -102,7 +110,7 @@ export default async function HomePage() {
 
           <div className="text-center mt-8">
             <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
-              <Link href="/harga">Lihat Semua Armada & Harga Lengkap</Link>
+              <Link href="/harga">Lihat Semua kendaraan & Harga Lengkap</Link>
             </Button>
           </div>
         </div>
@@ -118,6 +126,7 @@ export default async function HomePage() {
                 src="/image/Mobilbersih.png?height=600&width=600"
                 alt="Mobil dalam kondisi bersih dan siap jalan"
                 fill
+                loading="lazy"
                 className="object-cover"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">
@@ -129,6 +138,7 @@ export default async function HomePage() {
                 src="/image/supir.png?height=400&width=600"
                 alt="Tim sopir profesional berseragam"
                 fill
+                loading="lazy"
                 className="object-cover"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">
@@ -140,6 +150,7 @@ export default async function HomePage() {
                 src="/image/bandara.png?height=400&width=600"
                 alt="Layanan antar-jemput bandara"
                 fill
+                loading="lazy"
                 className="object-cover"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">

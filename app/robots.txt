@@ -1,3 +1,15 @@
 User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login
 Allow: /
-Sitemap: https://pjtransindonesia.com/sitemap.xml
+
+Sitemap: https://www.pjtrans.co.id/sitemap.xml
+Sitemap: https://pjtrans.co.id/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Host: www.pjtrans.co.id

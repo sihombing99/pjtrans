@@ -9,20 +9,27 @@ import AuthProvider from "@/components/AuthProvider" // <-- 1. Impor AuthProvide
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "PJTrans - PT Portama Jaya Transportasi | Rent, Drive, To Explore",
+  title: "PJTrans — Sewa Mobil & Transportasi Indonesia",
   description:
-    "Solusi transportasi terpercaya sejak 2022. Sewa mobil harian, bulanan, lepas kunci, dengan sopir. Melayani 80+ kota di Indonesia. Armada lengkap dari city car hingga mobil premium.",
+    "PJTrans menyediakan layanan sewa mobil dengan sopir dan lepas kunci. Melayani Jabodetabek & 80+ kota di Indonesia.",
   openGraph: {
-    title: 'PJTrans - PT Portama Jaya Transportasi',
-    description: 'Sewa mobil harian, mingguan, bulanan dengan sopir atau lepas kunci di seluruh Indonesia.',
-    url: 'https://www.pjtrans.co.id',
+    title: 'PJTrans — Sewa Mobil & Transportasi Indonesia',
+    description: 'Sewa mobil harian, bulanan, lepas kunci, dan antar-jemput bandara. Armada terawat dan sopir profesional.',
+    url: 'https://pjtrans.co.id',
     siteName: 'PJTrans',
     locale: 'id_ID',
     type: 'website',
+    images: ['/image/logo.webp']
   },
   twitter: { card: 'summary_large_image', creator: '@pjtrans' },
-  keywords: "sewa mobil, rental mobil, transportasi, Jakarta, Indonesia, sopir, lepas kunci, bandara, wisata, premium",
-    generator: 'v0.dev'
+  keywords: [
+    'sewa mobil',
+    'rental mobil',
+    'PJTrans',
+    'sewa mobil Jakarta',
+    'antar jemput bandara'
+  ],
+  generator: 'nextjs'
 }
 
 export default function RootLayout({
@@ -59,6 +66,57 @@ export default function RootLayout({
                   "areaServed": "ID"
                 }
               ]
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "PJTrans - Rental Mobil Murah Terbaik Jakarta & Indonesia",
+              "alternateName": ["PJTrans", "Rental Mobil Terpercaya", "Sewa Mobil Jakarta", "PT Portama Jaya Transportasi"],
+              "description": "Layanan rental mobil murah terbaik dengan sopir profesional. Sewa mobil terpercaya untuk kebutuhan harian, bisnis, dan wisata. Melayani bandara, antar-jemput, dan seluruh Indonesia dengan armada berkualitas.",
+              "image": "/image/logo.webp",
+              "@id": "https://pjtrans.co.id",
+              "url": "https://pjtrans.co.id",
+              "telephone": "+6281315393681",
+              "keywords": "rental mobil, sewa mobil, rental mobil murah, rental mobil terbaik, rental mobil jakarta, rental mobil terpercaya, rental mobil 24/7, sewa mobil dengan sopir, rental mobil lepas kunci, rental mobil harian, rental mobil bulanan, rental mobil bandara, rental mobil wisata, rental mobil terjangkau, rental mobil berkualitas, sewa mobil profesional, rental mobil online, booking rental mobil",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Jakarta",
+                "addressCountry": "ID"
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                  "opens": "00:00",
+                  "closes": "23:59"
+                }
+              ]
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "PJTrans",
+              "url": "https://pjtrans.co.id",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://pjtrans.co.id?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+              }
             })
           }}
         />

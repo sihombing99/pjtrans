@@ -15,6 +15,41 @@ import {
 
 const prisma = new PrismaClient()
 
+// Generate dynamic metadata per vehicle (title, description, openGraph, canonical)
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const id = Number(params.id)
+  if (isNaN(id)) {
+    return {
+      title: 'Detail Mobil - PJTrans',
+      description: 'Detail kendaraan di PJTrans.'
+    }
+  }
+
+  const car = await prisma.car.findUnique({ where: { id } })
+  if (!car) {
+    return {
+      title: 'Mobil Tidak Ditemukan | PJTrans',
+      description: 'Mobil yang Anda cari tidak ditemukan.'
+    }
+  }
+
+  const title = `${car.name} — Sewa Mobil | PJTrans`
+  const description = (car.content && String(car.content).slice(0, 150)) || `Detail harga dan spesifikasi ${car.name} dari PJTrans.`
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `https://pjtrans.co.id/detail/${id}` },
+    openGraph: {
+      title,
+      description,
+      url: `https://pjtrans.co.id/detail/${id}`,
+      images: [car.image || '/image/logo.webp']
+    },
+    twitter: { card: 'summary_large_image', creator: '@pjtrans' }
+  }
+}
+
 // Fungsi ini berjalan di server untuk mengambil data
 async function getCarDetails(id: number) {
   try {
@@ -56,6 +91,61 @@ export default async function DetailPage({ params }: { params: { id: string } })
 
   return (
     <div className="min-h-screen bg-white font-sans">
+      {/* BreadcrumbList structured data */}
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Beranda',
+                'item': 'https://pjtrans.co.id'
+              },
+              {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Armada',
+                'item': 'https://pjtrans.co.id/harga'
+              },
+              {
+                '@type': 'ListItem',
+                'position': 3,
+                'name': car.name,
+                'item': `https://pjtrans.co.id/detail/${car.id}`
+              }
+            ]
+          })
+        }}
+      />
+      {/* Product structured data for this vehicle */}
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: car.name,
+            image: [car.image || '/image/logo.webp'],
+            description: car.content || `Sewa ${car.name} dari PJTrans. Hubungi untuk booking.`,
+            sku: String(car.id),
+            brand: { '@type': 'Brand', name: 'PJTrans' },
+            category: car.category,
+            offers: {
+              '@type': 'Offer',
+              url: `https://pjtrans.co.id/detail/${car.id}`,
+              price: car.price || 'Hubungi',
+              priceCurrency: 'IDR',
+              availability: 'https://schema.org/InStock'
+            }
+          })
+        }}
+      />
       
       {/* --- HERO SECTION MODERN FULL-WIDTH --- */}
       <div className="relative w-full bg-gradient-to-r from-[#001E3C] via-[#003B5C] to-[#005289] text-white overflow-hidden">
@@ -76,6 +166,7 @@ export default async function DetailPage({ params }: { params: { id: string } })
                       alt={car.name}
                       fill
                       unoptimized
+                      loading="lazy"
                       className="object-cover object-left transition-transform duration-700 group-hover:scale-110 drop-shadow-2xl"
                   />
                 </div>
@@ -225,6 +316,51 @@ export default async function DetailPage({ params }: { params: { id: string } })
 
           {/* FAQ Section */}
           <div className="max-w-5xl mx-auto mb-20">
+              {/* FAQPage schema */}
+              <script
+                type="application/ld+json"
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'FAQPage',
+                    'mainEntity': [
+                      {
+                        '@type': 'Question',
+                        'name': 'Dokumen apa saja yang diperlukan untuk sewa lepas kunci?',
+                        'acceptedAnswer': {
+                          '@type': 'Answer',
+                          'text': 'Untuk sewa lepas kunci, kami memerlukan KTP, SIM A yang masih berlaku, dan bukti domisili (seperti tagihan listrik/air). Dokumen tambahan mungkin diperlukan untuk verifikasi lebih lanjut.'
+                        }
+                      },
+                      {
+                        '@type': 'Question',
+                        'name': 'Apakah bisa sewa untuk perjalanan luar kota?',
+                        'acceptedAnswer': {
+                          '@type': 'Answer',
+                          'text': 'Tentu saja. Kami melayani perjalanan untuk dalam dan luar kota. Mohon informasikan destinasi Anda saat melakukan pemesanan agar kami dapat memberikan penawaran terbaik, termasuk estimasi akomodasi untuk supir.'
+                        }
+                      },
+                      {
+                        '@type': 'Question',
+                        'name': 'Bagaimana jika terjadi kerusakan pada mobil saat disewa?',
+                        'acceptedAnswer': {
+                          '@type': 'Answer',
+                          'text': 'Harap segera hubungi tim kami jika terjadi kendala atau kerusakan. Kami akan memberikan panduan dan bantuan secepatnya. Untuk kerusakan ringan akibat kelalaian penyewa, biaya perbaikan akan dibebankan kepada penyewa.'
+                        }
+                      },
+                      {
+                        '@type': 'Question',
+                        'name': 'Apakah tersedia layanan antar-jemput mobil di bandara?',
+                        'acceptedAnswer': {
+                          '@type': 'Answer',
+                          'text': 'Ya, kami menyediakan layanan antar-jemput kendaraan di Bandara Soekarno-Hatta, Halim Perdanakusuma, dan lokasi lain di Jabodetabek sesuai kesepakatan.'
+                        }
+                      }
+                    ]
+                  })
+                }}
+              />
               <div className="space-y-2 mb-12">
                 <h2 className="text-4xl font-bold text-gray-900">Pertanyaan Umum</h2>
                 <div className="h-1 w-16 bg-gradient-to-r from-purple-600 to-purple-400 rounded-full"></div>
