@@ -13,7 +13,7 @@ import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react"
 // Konfigurasi kontak
 const WHATSAPP_NUMBER = "6281315393681"
 const EMAIL = "portamajaya.transportasi@gmail.com"
-const PHONE = "0813-2919-5095"
+const PHONE = "081315393681"
 
 const OFFICE_ADDRESS = {
   building: "Ruko Apartemen Sakura Garden City No. 117",

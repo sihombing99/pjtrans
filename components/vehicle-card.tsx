@@ -3,9 +3,9 @@ import React, { useMemo, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Phone, Car, Users, MapPin, Clock, Shield } from "lucide-react"
+import { Phone, Car, Users, MapPin, Clock, Shield, Truck, Bus } from "lucide-react"
 
 type Service = { id: number; type: string; price: string; description?: string }
 export type CarType = {
@@ -20,12 +20,43 @@ export type CarType = {
   services?: Service[]
 }
 
-const WHATSAPP_NUMBER = "6281234567890"
+const WHATSAPP_NUMBER = "6281315393681"
 
 function buildWhatsAppMessage(name: string) {
   return encodeURIComponent(`Halo, saya tertarik menyewa ${name}. Apakah masih tersedia dan berapa harga sewa?`)
 }
 
+// Versi statis untuk grid kategori di harga/page dan app/page
+// Hanya terima data plain (string, bukan component)
+export function VehicleCategoryCard({ 
+  label, 
+  color 
+}: { 
+  label: string
+  color: string
+}) {
+  // Icon mapping berdasarkan label
+  const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+    "City Car": Car,
+    "SUV": Users,
+    "Shuttle": MapPin,
+    "Hourly": Clock,
+    "Corporate": Shield,
+  }
+  
+  const IconComponent = iconMap[label] || Car
+  
+  return (
+    <Card className="text-center hover:shadow-md transition-shadow duration-200">
+      <CardHeader>
+        <IconComponent className={`h-8 w-8 mx-auto ${color}`} />
+        <CardTitle className="text-lg mt-2">{label}</CardTitle>
+      </CardHeader>
+    </Card>
+  )
+}
+
+// Versi interaktif untuk filter di FilterableVehicles
 export function VehicleCategory({
   icon,
   label,
@@ -126,11 +157,11 @@ export default function VehicleCard({ car }: { car: CarType }) {
 }
 
 const VEHICLE_CATEGORIES = [
-  { icon: <Car className="h-4 w-4" />, label: "City Car", color: "bg-blue-50" },
-  { icon: <Users className="h-4 w-4" />, label: "SUV", color: "bg-green-50" },
-  { icon: <MapPin className="h-4 w-4" />, label: "Shuttle", color: "bg-orange-50" },
-  { icon: <Clock className="h-4 w-4" />, label: "Hourly", color: "bg-teal-50" },
-  { icon: <Shield className="h-4 w-4" />, label: "Corporate", color: "bg-purple-50" },
+  { icon: Car, label: "City Car", color: "bg-blue-50" },
+  { icon: Users, label: "SUV", color: "bg-green-50" },
+  { icon: MapPin, label: "Shuttle", color: "bg-orange-50" },
+  { icon: Clock, label: "Hourly", color: "bg-teal-50" },
+  { icon: Shield, label: "Corporate", color: "bg-purple-50" },
 ]
 
 export function FilterableVehicles({ cars }: { cars: CarType[] }) {
@@ -149,15 +180,16 @@ export function FilterableVehicles({ cars }: { cars: CarType[] }) {
 
   return (
     <section className="mb-16">
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Harga Sewa Rental Armada Kami</h2>
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Harga Terupdate 2026</h2>
 
       <div className="flex gap-3 flex-wrap justify-center mb-6">
         {availableCategories.map((cat) => {
           const meta = VEHICLE_CATEGORIES.find((v) => v.label === cat)
+          const IconComponent = meta?.icon || Car
           return (
             <VehicleCategory
               key={cat}
-              icon={meta?.icon ?? <Car className="h-4 w-4" />}
+              icon={<IconComponent className="h-4 w-4" />}
               label={cat}
               active={selected === cat}
               onClick={() => setSelected(cat)}
@@ -186,12 +218,17 @@ export function CategoriesSection() {
     <section className="mb-16">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Pilih Armada Sesuai Kebutuhan Anda</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
-        {VEHICLE_CATEGORIES.map((c) => (
-          <div key={c.label} className="flex flex-col items-center gap-2 p-3 rounded-lg bg-white border">
-            <div className="p-2 bg-white rounded-md shadow-sm">{c.icon}</div>
-            <div className="text-xs font-medium text-gray-800">{c.label}</div>
-          </div>
-        ))}
+        {VEHICLE_CATEGORIES.map((c) => {
+          const IconComponent = c.icon
+          return (
+            <div key={c.label} className="flex flex-col items-center gap-2 p-3 rounded-lg bg-white border hover:shadow-md transition-shadow duration-200">
+              <div className="p-2 bg-white rounded-md shadow-sm">
+                <IconComponent className="h-4 w-4" />
+              </div>
+              <div className="text-xs font-medium text-gray-800">{c.label}</div>
+            </div>
+          )
+        })}
       </div>
     </section>
   )
@@ -200,7 +237,7 @@ export function CategoriesSection() {
 export function VehiclesSection({ cars }: { cars: CarType[] }) {
   return (
     <section className="mb-16">
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Harga Sewa Rental Armada Kami</h2>
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Harga Terupdate 2026</h2>
       {cars.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-gray-600 text-lg">Belum ada data kendaraan tersedia</p>

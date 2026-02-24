@@ -13,6 +13,8 @@ import Link from "next/link"
 import prisma from "@/lib/prisma"
 import { VehiclesSection, CategoriesSection } from "@/components/vehicle-card"
 import { Slideshow } from "@/components/slideshow"
+import { VehicleCategoryCard } from "@/components/vehicle-card"
+import { Car as CarIcon, Truck, Bus, Phone } from "lucide-react"
 import ServiceCard from "@/components/service-card"
 
 // Type definition for Car with Services
@@ -33,44 +35,15 @@ type Car = {
   }>;
 };
 
-const services = [
-  {
-    icon: <Car className="h-12 w-12 text-blue-500" />,
-    title: "Rental Mobil",
-    description: "Sewa mobil dengan harga terjangkau",
-    features: ["Berbagai pilihan kendaraan", "Harga kompetitif", "Proses cepat"]
-  },
-  {
-    icon: <Users className="h-12 w-12 text-green-500" />,
-    title: "Layanan Sopir",
-    description: "Sopir profesional berpengalaman",
-    features: ["Sopir terlatih", "Berseragam rapi", "Ramah dan sopan"]
-  },
-  {
-    icon: <MapPin className="h-12 w-12 text-orange-500" />,
-    title: "Layanan Nasional",
-    description: "Melayani seluruh Indonesia",
-    features: ["Jangkauan luas", "Layanan 24/7", "Responsif"]
-  },
-  {
-    icon: <Clock className="h-12 w-12 text-teal-500" />,
-    title: "Sewa Harian",
-    description: "6–24 jam, cocok untuk kegiatan singkat",
-    features: ["Fleksibel waktu", "Cocok untuk acara", "Harga kompetitif"]
-  },
-  {
-    icon: <Building className="h-12 w-12 text-purple-500" />,
-    title: "Sewa Bulanan",
-    description: "Untuk operasional kantor atau perusahaan",
-    features: ["Hemat biaya", "Kontrak jangka panjang", "Maintenance included"]
-  },
-  {
-    icon: <Plane className="h-12 w-12 text-red-500" />,
-    title: "Antar Jemput Bandara",
-    description: "Layanan antar jemput bandara domestik & internasional",
-    features: ["24/7 service", "Flight tracking", "Meet & greet"]
-  }
-]
+
+// Kategori kendaraan yang tersedia
+const VEHICLE_CATEGORIES = [
+  { icon: CarIcon, label: "City Car", color: "text-blue-500" },
+  { icon: CarIcon, label: "MPV", color: "text-green-500" },
+  { icon: CarIcon, label: "SUV & Premium", color: "text-purple-500" },
+  { icon: Truck, label: "Komersial", color: "text-orange-500" },
+  { icon: Bus, label: "Wisata", color: "text-red-500" },
+] as const
 
 export default async function HomePage() {
   let cars: Car[] = []
@@ -109,101 +82,21 @@ export default async function HomePage() {
       {/* Slideshow Section */}
       
 
-      {/* Our Advantages */}
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <section className="py-8 bg-white"> 
-        <div className="container mx-auto px-4">
-          {/* Available Services */}
-          <section className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Layanan yang Tersedia</h2>
-            <div className="grid md:grid-cols-4 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {services.slice(0, 4).map((s, i) => (
-                <ServiceCard key={i} icon={s.icon} title={s.title} description={s.description} features={s.features} />
-              ))}
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto mt-6">
-              {services.slice(4, 6).map((s, i) => (
-                <ServiceCard key={i} icon={s.icon} title={s.title} description={s.description} features={s.features} />
-              ))}
-            </div>
-          </section>
-        </div>
-      </section>
       
-         <section className="py-8 bg-white"> 
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Keunggulan Kami</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              <Card className="text-center">
-                <CardHeader>
-                  <Car className="h-12 w-12 text-blue-500 mx-auto mb-4" />
-                  <CardTitle>Armada Lengkap</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">Dari mobil ekonomis hingga mobil premium tersedia untuk disewa.</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Shield className="h-12 w-12 text-green-500 mx-auto mb-4" />
-                  <CardTitle>Kondisi Terawat</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">Semua kendaraan dirawat berkala dan siap digunakan kapan saja.</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Users className="h-12 w-12 text-purple-500 mx-auto mb-4" />
-                  <CardTitle>Sopir Profesional</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">Pengemudi kami terlatih, berpengalaman, dan bersikap sopan.</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <CheckCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-                  <CardTitle>Legalitas Resmi</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">Perusahaan terdaftar secara hukum dan terpercaya.</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <MapPin className="h-12 w-12 text-orange-500 mx-auto mb-4" />
-                  <CardTitle>Layanan Nasional</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">Melayani hampir seluruh kota besar di Indonesia.</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Clock className="h-12 w-12 text-teal-500 mx-auto mb-4" />
-                  <CardTitle>🕒 Layanan Cepat</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">Respon cepat, booking mudah, dan layanan 24/7.</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
       {/* Our Fleet Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Armada Kami</h2>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Kami menyediakan berbagai pilihan armada, mulai dari city car yang ukuran ringkas dan lincah untuk area
-              perkotaan, SUV yang tangguh, hingga mobil mewah untuk acara spesial Anda. Semua kendaraan dirawat dengan
-              standar terbaik untuk memastikan perjalanan yang aman dan nyaman.
-            </p>
+          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Pilih Armada Sesuai Kebutuhan Anda</h2>
+           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+            {VEHICLE_CATEGORIES.map(({ label, color }) => (
+            <VehicleCategoryCard key={label} label={label} color={color} />
+          ))}
+        </div>
           </div>
+      </section>
 
+<section className="py-16 bg-white">
+        <div className="container mx-auto px-4">        
           {/* Vehicles grid using VehicleCard component */}
           <VehiclesSection cars={cars} />
 
@@ -327,6 +220,6 @@ export default async function HomePage() {
         </div>
       </section>
       </div>
-    </div>
+    
   )
 }

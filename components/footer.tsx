@@ -76,7 +76,7 @@ export function Footer() {
               <div className="flex items-start space-x-3">
                 <Phone className="h-5 w-5 text-green-500 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium">0813-2919-5095</p>
+                  <p className="text-sm font-medium">081315393681</p>
                   <p className="text-xs text-gray-400">WhatsApp & Telepon</p>
                 </div>
               </div>

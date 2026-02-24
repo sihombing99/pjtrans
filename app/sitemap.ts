@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://www.pjtrans.co.id'
+  const base = 'https://pjtransindonesia.com/'
   const routes = ['', '/layanan', '/harga', '/tentang', '/kontak']
   const now = new Date().toISOString()
   return routes.map((r) => ({

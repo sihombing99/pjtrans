@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge"
 import { Car as CarIcon, Truck, Bus, Phone } from "lucide-react"
 import Image from "next/image"
 import prisma from "@/lib/prisma"
+import { VehicleCategoryCard } from "@/components/vehicle-card"
 
 // Konfigurasi WhatsApp
 const WHATSAPP_NUMBER = "6281315393681"
@@ -78,26 +79,6 @@ async function fetchCars(): Promise<Car[]> {
     console.error("Database error:", error)
     return []
   }
-}
-
-// Komponen kategori kendaraan
-function VehicleCategory({ 
-  icon: Icon, 
-  label, 
-  color 
-}: { 
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-  label: string
-  color: string
-}) {
-  return (
-    <Card className="text-center hover:shadow-md transition-shadow duration-200">
-      <CardHeader>
-        <Icon className={`h-8 w-8 mx-auto ${color}`} />
-        <CardTitle className="text-lg mt-2">{label}</CardTitle>
-      </CardHeader>
-    </Card>
-  )
 }
 
 // Komponen card kendaraan dengan harga dan tombol aksi
@@ -209,8 +190,8 @@ function CategoriesSection() {
     <section className="mb-16">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Pilih Armada Sesuai Kebutuhan Anda</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
-        {VEHICLE_CATEGORIES.map(({ icon, label, color }) => (
-          <VehicleCategory key={label} icon={icon} label={label} color={color} />
+        {VEHICLE_CATEGORIES.map(({ label, color }) => (
+          <VehicleCategoryCard key={label} label={label} color={color} />
         ))}
       </div>
     </section>
@@ -221,7 +202,7 @@ function CategoriesSection() {
 function VehiclesSection({ cars }: { cars: Car[] }) {
   return (
     <section className="mb-16">
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Harga Sewa Rental Armada Kami</h2>
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Harga Terupdate 2026</h2>
       {cars.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-gray-600 text-lg">Belum ada data kendaraan tersedia</p>
@@ -250,7 +231,9 @@ export default async function HargaPage() {
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-black tracking-tight">Armada Kami</h1>
             <p className="text-base md:text-lg text-blue-100 leading-relaxed">
-              Berbagai pilihan kendaraan berkualitas untuk memenuhi semua kebutuhan transportasi Anda
+              Kami menyediakan berbagai pilihan armada, mulai dari city car yang ukuran ringkas dan lincah untuk area
+              perkotaan, SUV yang tangguh, hingga mobil mewah untuk acara spesial Anda. Semua kendaraan dirawat dengan
+              standar terbaik untuk memastikan perjalanan yang aman dan nyaman.
             </p>
           </div>
         </div>
