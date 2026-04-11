@@ -3,13 +3,8 @@ services:
     image: ikhsan123/pjtrans:latest
     container_name: pjtrans
     restart: unless-stopped
-    environment:
-      NODE_ENV: production
-      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@db:5432/mydb?schema=public}
-      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
-      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-changeme-please}
-    ports:
-      - "3000:3000"
+    env_file:
+      - .env
     volumes:
       - ./public/uploads:/app/public/uploads
       - next-cache:/app/.next/cache
