@@ -26,19 +26,7 @@ const MAPS_URL = `https://maps.google.com/?q=${encodeURIComponent(
   `${OFFICE_ADDRESS.building} ${OFFICE_ADDRESS.street} ${OFFICE_ADDRESS.city}`
 )}`
 
-// Daftar kota layanan
-const SERVICE_CITIES = [
-  "Jakarta", "Bandung", "Yogyakarta", "Surabaya", "Denpasar",
-  "Medan", "Makassar", "Palembang", "Pekanbaru", "Semarang",
-  "Malang", "Solo", "Balikpapan", "Banjarmasin", "Pontianak",
-  "Manado", "Padang", "Jambi", "Lampung", "Batam",
-  "Bekasi", "Tangerang", "Depok", "Bogor", "Cirebon",
-  "Tasikmalaya", "Purwokerto", "Tegal", "Kudus", "Salatiga",
-  "Magelang", "Klaten", "Wonogiri", "Pacitan", "Blitar",
-  "Kediri", "Jember", "Banyuwangi", "Probolinggo", "Pasuruan",
-  "Sidoarjo", "Gresik", "Lamongan", "Tuban", "Bojonegoro",
-  "Ngawi", "Madiun", "Ponorogo", "Trenggalek", "Tulungagung",
-]
+
 
 // Jam operasional
 const OPERATING_HOURS = [
@@ -81,18 +69,6 @@ function ContactCard({
   )
 }
 
-// Grid badge kota-kota layanan
-function ServiceCitiesBadges() {
-  return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-h-96 overflow-y-auto">
-      {SERVICE_CITIES.map(city => (
-        <Badge key={city} variant="outline" className="justify-center p-2 text-xs">
-          {city}
-        </Badge>
-      ))}
-    </div>
-  )
-}
 
 // Section peta lokasi kantor
 function MapSection() {
@@ -252,26 +228,7 @@ export default function KontakPage() {
           </div>
         </div>
 
-        {/* Section area layanan */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Area Layanan</h2>
-          <Card className="max-w-6xl mx-auto">
-            <CardHeader className="text-center">
-              <CardTitle>Kami Melayani 80+ Kota Besar di Indonesia</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ServiceCitiesBadges />
-              <div className="mt-6 text-center space-y-3">
-                <p className="text-gray-600">Tidak menemukan kota Anda?</p>
-                <Button asChild variant="outline" className="w-full">
-                  <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=Halo, saya ingin menanyakan ketersediaan layanan...`} target="_blank" rel="noopener noreferrer">
-                    Tanyakan Ketersediaan Layanan
-                  </a>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
+      
 
         <MapSection />
       </div>

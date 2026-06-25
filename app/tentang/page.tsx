@@ -40,13 +40,7 @@ export default async function TentangPage() {
     services: c.services ?? [],
   }))
  
-   const organizationStructure = [
-     { name: "Gilbert Armando", position: "Direktur Utama" },
-     { name: "Sjahrial Rusli", position: "Direktur Keuangan" },
-     { name: "Octavianus", position: "Manager Operasional" },
-     { name: "Bayu Prasetio", position: "Manager Pemasaran" },
-     { name: "Rudi Setiawan", position: "Komisaris" },
-   ]
+   
  
    const companyValues = [
      {
@@ -455,92 +449,13 @@ export default async function TentangPage() {
           </div>
         </section>
 
-         {/* Organizational Structure */}
-         <section className="mb-24">
-           <div className="max-w-5xl mx-auto">
-             <div className="space-y-2 mb-12">
-               <h2 className="text-4xl font-bold text-gray-900">Struktur Organisasi</h2>
-               <div className="h-1 w-16 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
-             </div>
-
-             <Card className="border-0 shadow-lg">
-               <CardHeader>
-                 <CardTitle className="text-2xl text-gray-900">Tim Manajemen PJTrans</CardTitle>
-                 <CardDescription className="text-base">Dipimpin oleh profesional berpengalaman di bidang transportasi dan bisnis</CardDescription>
-               </CardHeader>
-               <CardContent>
-                 <div className="overflow-x-auto">
-                   <Table>
-                     <TableHeader>
-                       <TableRow className="bg-gradient-to-r from-blue-50 to-blue-100/50">
-                         <TableHead className="font-bold text-gray-900">Nama Lengkap</TableHead>
-                         <TableHead className="font-bold text-gray-900">Jabatan</TableHead>
-                       </TableRow>
-                     </TableHeader>
-                     <TableBody>
-                       {organizationStructure.map((person, index) => (
-                         <TableRow key={index} className="hover:bg-gray-50 transition-colors border-b border-gray-200">
-                           <TableCell className="font-semibold text-gray-800 py-4">{person.name}</TableCell>
-                           <TableCell className="py-4">
-                             <Badge className="bg-blue-600 hover:bg-blue-700 text-white font-semibold">
-                               {person.position}
-                             </Badge>
-                           </TableCell>
-                         </TableRow>
-                       ))}
-                     </TableBody>
-                   </Table>
-                 </div>
-               </CardContent>
-             </Card>
-           </div>
-         </section>
+       
 
          {/* Armada & Harga - menampilkan semua mobil dari database (filterable by category) */}
         <div className="container mx-auto px-4 py-8">
           <VehiclesSection cars={cars} />
         </div>
 
-         {/* Organizational Structure */}
-         <section className="mb-24">
-           <div className="max-w-5xl mx-auto">
-             <div className="space-y-2 mb-12">
-               <h2 className="text-4xl font-bold text-gray-900">Struktur Organisasi</h2>
-               <div className="h-1 w-16 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
-             </div>
-
-             <Card className="border-0 shadow-lg">
-               <CardHeader>
-                 <CardTitle className="text-2xl text-gray-900">Tim Manajemen PJTrans</CardTitle>
-                 <CardDescription className="text-base">Dipimpin oleh profesional berpengalaman di bidang transportasi dan bisnis</CardDescription>
-               </CardHeader>
-               <CardContent>
-                 <div className="overflow-x-auto">
-                   <Table>
-                     <TableHeader>
-                       <TableRow className="bg-gradient-to-r from-blue-50 to-blue-100/50">
-                         <TableHead className="font-bold text-gray-900">Nama Lengkap</TableHead>
-                         <TableHead className="font-bold text-gray-900">Jabatan</TableHead>
-                       </TableRow>
-                     </TableHeader>
-                     <TableBody>
-                       {organizationStructure.map((person, index) => (
-                         <TableRow key={index} className="hover:bg-gray-50 transition-colors border-b border-gray-200">
-                           <TableCell className="font-semibold text-gray-800 py-4">{person.name}</TableCell>
-                           <TableCell className="py-4">
-                             <Badge className="bg-blue-600 hover:bg-blue-700 text-white font-semibold">
-                               {person.position}
-                             </Badge>
-                           </TableCell>
-                         </TableRow>
-                       ))}
-                     </TableBody>
-                   </Table>
-                 </div>
-               </CardContent>
-             </Card>
-           </div>
-         </section>
 
          {/* Legality & Permits */}
       
