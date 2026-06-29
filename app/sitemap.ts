@@ -14,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // fetch vehicle pages (dynamic)
   try {
-    const cars = await prisma.car.findMany({ select: { id: true } })
+   const cars = await prisma.car.findMany({ select: { id: true } })
     const carEntries = cars.map((c) => ({
       url: `${base}/detail/${c.id}`,
       lastModified: now,

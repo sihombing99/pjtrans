@@ -103,7 +103,7 @@ export function Slideshow() {
 
   if (isLoading) {
     return (
-      <div className="w-full h-96 bg-gray-200 flex items-center justify-center rounded-lg">
+      <div className="w-full h-full bg-gray-200 flex items-center justify-center overflow-hidden">
         <p className="text-gray-600">Loading slideshow...</p>
       </div>
     );
@@ -111,7 +111,7 @@ export function Slideshow() {
 
   if (images.length === 0) {
     return (
-      <div className="w-full h-96 bg-gray-100 flex items-center justify-center rounded-lg">
+      <div className="w-full h-full bg-gray-100 flex items-center justify-center overflow-hidden">
         <p className="text-gray-600">No slideshow images available</p>
       </div>
     );
@@ -120,7 +120,7 @@ export function Slideshow() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-96 md:h-[500px] bg-black rounded-lg overflow-hidden group cursor-grab active:cursor-grabbing"
+      className="relative w-full h-full bg-black overflow-hidden group cursor-grab active:cursor-grabbing"
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onTouchStart={handleTouchStart}
@@ -140,7 +140,8 @@ export function Slideshow() {
               alt={`Slide ${index + 1}`}
               fill
               unoptimized
-              className="object-cover w-full h-full"
+              sizes="100vw"
+              className="object-cover object-center w-full h-full"
               priority={index === currentIndex}
             />
           </div>

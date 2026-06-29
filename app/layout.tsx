@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "PJTrans — Sewa Mobil & Transportasi Indonesia",
   description:
     "PJTrans menyediakan layanan sewa mobil dengan sopir dan lepas kunci. Melayani Jabodetabek & 80+ kota di Indonesia.",
+  icons: {
+    icon: "/image/favicon.png",
+  },
   openGraph: {
     title: 'PJTrans — Sewa Mobil & Transportasi Indonesia',
     description: 'Sewa mobil harian, bulanan, lepas kunci, dan antar-jemput bandara. Armada terawat dan sopir profesional.',
@@ -40,6 +43,9 @@ export default function RootLayout({
   return (
     <html lang="id" className={inter.className}>
       <head>
+        <link rel="icon" href="/image/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/image/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/image/favicon.png" />
         <script
           type="application/ld+json"
           suppressHydrationWarning

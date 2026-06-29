@@ -36,7 +36,7 @@ export function Navbar() {
               <Image 
                 src="/image/pjtrans.png" 
                 alt="PJTrans Logo" 
-                className="h-16 w-auto md:h-20 md:w-52 object-contain" 
+                className="h-auto w-auto md:h-40 md:w-72 object-contain" 
                 width={208} 
                 height={80} 
               />

@@ -111,7 +111,7 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-150 w-full flex items-center justify-center bg-gradient-to-r from-slate-300 to-slate-00 overflow-hidden">
+      <section className="relative w-full aspect-[3/1] sm:aspect-[3/1] md:aspect-[3/1] lg:aspect-[3/1] overflow-hidden bg-slate-100">
         <Slideshow />
       </section>
 
