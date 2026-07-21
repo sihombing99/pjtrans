@@ -46,3 +46,19 @@ model Slideshow {
   updatedAt DateTime @updatedAt
 }
 
+model Booking {
+  id                Int      @id @default(autoincrement())
+  nama              String
+  whatsapp          String
+  kapasitas         String
+  kendaraan         String
+  tanggalMulai      String
+  jamJemput         String
+  tanggalSelesai    String
+  jamSelesai        String
+  alamatJemput      String
+  tujuan            String
+  alamatPengantaran String
+  createdAt         DateTime @default(now())
+}
+

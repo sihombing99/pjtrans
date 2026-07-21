@@ -4,12 +4,12 @@ Disallow: /api/
 Disallow: /login
 Allow: /
 
-Sitemap: https://www.pjtrans.co.id/sitemap.xml
-Sitemap: https://pjtrans.co.id/sitemap.xml
+Sitemap: https://www.https://pjtransindonesia.com/sitemap.xml
+Sitemap: https://https://pjtransindonesia.com/sitemap.xml
 
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
-Host: www.pjtrans.co.id
+Host: www.https://pjtransindonesia.com

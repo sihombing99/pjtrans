@@ -1,11 +1,11 @@
 export const metadata = {
   title: "Rental Mobil Murah Terbaik Jakarta - PJTrans | Sewa Mobil Terpercaya",
   description: "Rental mobil murah terbaik dengan sopir profesional atau lepas kunci. PJTrans: sewa mobil terpercaya, armada berkualitas, harga terjangkau, melayani 80+ kota Indonesia.",
-  alternates: { canonical: 'https://pjtrans.co.id/' },
+  alternates: { canonical: 'https://https://pjtransindonesia.com/' },
   openGraph: {
     title: 'Rental Mobil Murah Terbaik Jakarta - PJTrans',
     description: 'Sewa mobil harian, bulanan, rental mobil bandara dari PJTrans. Rental mobil terpercaya dengan sopir profesional dan harga kompetitif.',
-    url: 'https://pjtrans.co.id/',
+    url: 'https://https://pjtransindonesia.com/',
     images: ['/image/logo.webp']
   },
   twitter: { card: 'summary_large_image', creator: '@pjtrans' }
@@ -32,8 +32,8 @@ type Car = {
   name: string;
   price: string;
   category: string;
-  year: number|null;
-  seats: number| null;
+  year: number | null;
+  seats: number | null;
   transmission: string;
   image: string | null;
   services: Array<{
@@ -116,23 +116,23 @@ export default async function HomePage() {
       </section>
 
       {/* Slideshow Section */}
-      
 
-      
+
+
       {/* Our Fleet Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Pilih Kendaraan Sesuai Kebutuhan Anda</h2>
-           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
             {VEHICLE_CATEGORIES.map(({ label, color }) => (
-            <VehicleCategoryCard key={label} label={label} color={color} />
-          ))}
-        </div>
+              <VehicleCategoryCard key={label} label={label} color={color} />
+            ))}
           </div>
+        </div>
       </section>
 
-<section className="py-16 bg-white">
-        <div className="container mx-auto px-4">        
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
           {/* Vehicles grid using VehicleCard component */}
           <VehiclesSection cars={cars} />
 
@@ -189,7 +189,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      
+
 
       {/* Our Partners */}
       <section className="py-16 bg-white">
@@ -202,7 +202,7 @@ export default async function HomePage() {
                 alt="Partner 1"
                 width={200}
                 height={100}
-                //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
               />
             </div>
             <div className="flex justify-center">
@@ -211,7 +211,7 @@ export default async function HomePage() {
                 alt="Partner 2"
                 width={200}
                 height={100}
-                //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
               />
             </div>
             <div className="flex justify-center">
@@ -220,16 +220,16 @@ export default async function HomePage() {
                 alt="Partner 3"
                 width={200}
                 height={100}
-               //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
               />
             </div>
-             <div className="flex justify-center">
+            <div className="flex justify-center">
               <Image
                 src="/image/mitra2.png?height=100&width=200&text=Partner+3"
                 alt="Partner 3"
                 width={200}
                 height={100}
-               //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
               />
             </div>
 
@@ -239,7 +239,7 @@ export default async function HomePage() {
                 alt="Partner 4"
                 width={200}
                 height={100}
-                //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
               />
             </div>
             <div className="flex justify-center">
@@ -248,7 +248,7 @@ export default async function HomePage() {
                 alt="Partner 5"
                 width={200}
                 height={100}
-                //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              //className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
               />
             </div>
           </div>
@@ -259,26 +259,26 @@ export default async function HomePage() {
         </div>
       </section>
       {/* Section area layanan */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Area Layanan</h2>
-                <Card className="max-w-6xl mx-auto">
-                  <CardHeader className="text-center">
-                    <CardTitle>Kami Melayani 80+ Kota Besar di Indonesia</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ServiceCitiesBadges />
-                    <div className="mt-6 text-center space-y-3">
-                      <p className="text-gray-600">Tidak menemukan kota Anda?</p>
-                      <Button asChild variant="outline" className="w-full">
-                        <a href={`https://wa.me/6281315393681?text=Halo, saya ingin menanyakan ketersediaan layanan...`} target="_blank" rel="noopener noreferrer">
-                          Tanyakan Ketersediaan Layanan
-                        </a>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </section>
-      </div>
-    
+      <section className="mb-16">
+        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Area Layanan</h2>
+        <Card className="max-w-6xl mx-auto">
+          <CardHeader className="text-center">
+            <CardTitle>Kami Melayani 80+ Kota Besar di Indonesia</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ServiceCitiesBadges />
+            <div className="mt-6 text-center space-y-3">
+              <p className="text-gray-600">Tidak menemukan kota Anda?</p>
+              <Button asChild variant="outline" className="w-full">
+                <a href={`https://wa.me/6281315393681?text=Halo, saya ingin menanyakan ketersediaan layanan...`} target="_blank" rel="noopener noreferrer">
+                  Tanyakan Ketersediaan Layanan
+                </a>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+    </div>
+
   )
 }

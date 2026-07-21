@@ -182,18 +182,18 @@ export default function DetailAlphardPage() {
             {/* Card Mobil 1 */}
             <div className="flex flex-col rounded-xl overflow-hidden shadow-md border">
               <div className="relative h-48 bg-gradient-to-tr from-[#007e89] via-[#005289] to-[#003f5c] flex items-center justify-center">
-                <Image 
-                  src="/image/avanza.png" 
-                  alt="Toyota Avanza" 
-                  width={280} 
-                  height={160} 
+                <Image
+                  src="/image/avanza.png"
+                  alt="Toyota Avanza"
+                  width={280}
+                  height={160}
                   className="object-contain drop-shadow-lg"
                 />
               </div>
               <div className="bg-[#005289] text-white text-center py-4 px-2">
                 <h4 className="font-bold text-lg">Toyota Avanza</h4>
-                <a 
-                  href="/harga/avanza" 
+                <a
+                  href="/harga/avanza"
                   className="mt-2 inline-block bg-white text-[#007e89] font-semibold px-6 py-2 rounded-lg hover:bg-gray-100 transition"
                 >
                   Detail
@@ -203,18 +203,18 @@ export default function DetailAlphardPage() {
             {/* Card Mobil 2 */}
             <div className="flex flex-col rounded-xl overflow-hidden shadow-md border">
               <div className="relative h-48 bg-gradient-to-tr from-[#007e89] via-[#005289] to-[#003f5c] flex items-center justify-center">
-                <Image 
-                  src="/image/ertiga.png" 
-                  alt="Suzuki Ertiga" 
-                  width={280} 
-                  height={160} 
+                <Image
+                  src="/image/ertiga.png"
+                  alt="Suzuki Ertiga"
+                  width={280}
+                  height={160}
                   className="object-contain drop-shadow-lg"
                 />
               </div>
               <div className="bg-[#005289] text-white text-center py-4 px-2">
                 <h4 className="font-bold text-lg">Suzuki Ertiga</h4>
-                <a 
-                  href="/harga/ertiga" 
+                <a
+                  href="/harga/ertiga"
                   className="mt-2 inline-block bg-white text-[#007e89] font-semibold px-6 py-2 rounded-lg hover:bg-gray-100 transition"
                 >
                   Detail
@@ -224,18 +224,18 @@ export default function DetailAlphardPage() {
             {/* Card Mobil 3 */}
             <div className="flex flex-col rounded-xl overflow-hidden shadow-md border">
               <div className="relative h-48 bg-gradient-to-tr from-[#007e89] via-[#005289] to-[#003f5c] flex items-center justify-center">
-                <Image 
-                  src="/image/Pajero Sport.png" 
-                  alt="Mitsubishi Pajero" 
-                  width={280} 
-                  height={160} 
+                <Image
+                  src="/image/Pajero Sport.png"
+                  alt="Mitsubishi Pajero"
+                  width={280}
+                  height={160}
                   className="object-contain drop-shadow-lg"
                 />
               </div>
               <div className="bg-[#005289] text-white text-center py-4 px-2">
                 <h4 className="font-bold text-lg">Mitsubishi Pajero</h4>
-                <a 
-                  href="/harga/pajero" 
+                <a
+                  href="/harga/pajero"
                   className="mt-2 inline-block bg-white text-[#007e89] font-semibold px-6 py-2 rounded-lg hover:bg-gray-100 transition"
                 >
                   Detail
@@ -257,7 +257,7 @@ export default function DetailAlphardPage() {
         </Button>
       </section>
 
-     {/*Footer
+      {/*Footer
        <footer className="bg-black text-white py-6 text-xs text-center">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
           <div>
@@ -272,7 +272,7 @@ export default function DetailAlphardPage() {
           <div>
             <strong>CONTACT US</strong><br />
             WhatsApp: 0813-1539-3681<br />
-            Email: info@pjtrans.co.id
+            Email: info@https://pjtransindonesia.com
           </div>
         </div>
         <div className="mt-4">Sewa mobil Jakarta | All rights reserved</div>

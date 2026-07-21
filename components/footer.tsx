@@ -11,7 +11,7 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               {/*<Car className="h-8 w-8 text-yellow-500" />*/}
-              <Image src="/image/pjtrans.png" alt="PJTrans Logo" className="h-8 w-18"  width={128} height={40} />
+              <Image src="/image/pjtrans_1.png" alt="PJTrans Logo" className="h-8 w-18"  width={128} height={40} />
               <div>
                 <h3 className="text-xl font-bold">PJTrans</h3>
                 <p className="text-sm text-gray-400">PT Portama Jaya Transportasi</p>
@@ -46,6 +46,11 @@ export function Footer() {
               <li>
                 <Link href="/layanan" className="text-gray-400 hover:text-white transition-colors">
                   Layanan
+                </Link>
+              </li>
+              <li>
+                <Link href="/order" className="text-gray-400 hover:text-white transition-colors">
+                  Order
                 </Link>
               </li>
               <li>

@@ -14,8 +14,8 @@ const navigation = [
   { name: "Tentang Kami", href: "/tentang" },
   { name: "Layanan", href: "/layanan" },
   { name: "Harga & Armada", href: "/harga" },
+  { name: "Order", href: "/order" },
   { name: "Kontak", href: "/kontak" },
- 
 ]
 
 export function Navbar() {
@@ -28,34 +28,36 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         {/* Menggunakan relative agar tombol kanan bisa diposisikan absolute jika perlu */}
         <div className="relative flex h-24 items-center justify-center">
-          
+
           {/* Container Tengah: Logo + Navigasi */}
           <div className="flex items-center gap-8 md:gap-12">
             {/* Logo */}
             <Link href="/" className="flex items-center flex-shrink-0">
-              <Image 
-                src="/image/pjtrans.png" 
-                alt="PJTrans Logo" 
-                className="h-auto w-auto md:h-40 md:w-72 object-contain" 
-                width={208} 
-                height={80} 
+              <Image
+                src="/image/pjtrans_1.png"
+                alt="PJTrans Logo"
+                className="h-auto w-auto md:h-40 md:w-72 object-contain"
+                width={208}
+                height={80}
               />
             </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={cn(
-                    "text-base font-semibold transition-colors hover:text-blue-600 whitespace-nowrap",
-                    pathname === item.href ? "text-blue-600" : "text-gray-700",
-                  )}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navigation
+                .filter((item) => !isAdmin || (item.name !== "Beranda" && item.name !== "Tentang Kami" && item.name !== "Layanan" && item.name !== "Harga & Armada" && item.name !== "Kontak"))
+                .map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      "text-base font-semibold transition-colors hover:text-blue-600 whitespace-nowrap",
+                      pathname === item.href ? "text-blue-600" : "text-gray-700",
+                    )}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
               {/* Admin-only links when on admin routes */}
               {isAdmin && (
                 <>
@@ -76,6 +78,15 @@ export function Navbar() {
                     )}
                   >
                     Slideshow
+                  </Link>
+                  <Link
+                    href="/admin/pemesanan"
+                    className={cn(
+                      "text-base font-semibold transition-colors hover:text-blue-600 whitespace-nowrap",
+                      pathname === "/admin/pemesanan" ? "text-blue-600" : "text-gray-700",
+                    )}
+                  >
+                    Pesanan
                   </Link>
                 </>
               )}
@@ -107,18 +118,20 @@ export function Navbar() {
               </SheetTrigger>
               <SheetContent side="right" className="w-64">
                 <div className="flex flex-col p-4 gap-3">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className={cn(
-                        "text-base font-semibold transition-colors hover:text-blue-600",
-                        pathname === item.href ? "text-blue-600" : "text-gray-700",
-                      )}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  {navigation
+                    .filter((item) => !isAdmin || (item.name !== "Beranda" && item.name !== "Tentang Kami" && item.name !== "Layanan" && item.name !== "Harga & Armada" && item.name !== "Kontak"))
+                    .map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className={cn(
+                          "text-base font-semibold transition-colors hover:text-blue-600",
+                          pathname === item.href ? "text-blue-600" : "text-gray-700",
+                        )}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
                   {isAdmin && (
                     <>
                       <Link
@@ -138,6 +151,15 @@ export function Navbar() {
                         )}
                       >
                         Slideshow
+                      </Link>
+                      <Link
+                        href="/admin/pemesanan"
+                        className={cn(
+                          "text-base font-semibold transition-colors hover:text-blue-600",
+                          pathname === "/admin/pemesanan" ? "text-blue-600" : "text-gray-700",
+                        )}
+                      >
+                        Pesanan
                       </Link>
                     </>
                   )}

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'PJTrans — Sewa Mobil & Transportasi Indonesia',
     description: 'Sewa mobil harian, bulanan, lepas kunci, dan antar-jemput bandara. Armada terawat dan sopir profesional.',
-    url: 'https://pjtrans.co.id',
+    url: 'https://https://pjtransindonesia.com',
     siteName: 'PJTrans',
     locale: 'id_ID',
     type: 'website',
@@ -54,7 +54,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "PT Portama Jaya Transportasi",
-              "url": "https://www.pjtrans.co.id",
+              "url": "https://www.https://pjtransindonesia.com",
               "logo": "/image/logo.webp",
               "sameAs": [
                 "https://www.instagram.com/pjtrans",
@@ -86,8 +86,8 @@ export default function RootLayout({
               "alternateName": ["PJTrans", "Rental Mobil Terpercaya", "Sewa Mobil Jakarta", "PT Portama Jaya Transportasi"],
               "description": "Layanan rental mobil murah terbaik dengan sopir profesional. Sewa mobil terpercaya untuk kebutuhan harian, bisnis, dan wisata. Melayani bandara, antar-jemput, dan seluruh Indonesia dengan armada berkualitas.",
               "image": "/image/logo.webp",
-              "@id": "https://pjtrans.co.id",
-              "url": "https://pjtrans.co.id",
+              "@id": "https://https://pjtransindonesia.com",
+              "url": "https://https://pjtransindonesia.com",
               "telephone": "+6281315393681",
               "keywords": "rental mobil, sewa mobil, rental mobil murah, rental mobil terbaik, rental mobil jakarta, rental mobil terpercaya, rental mobil 24/7, sewa mobil dengan sopir, rental mobil lepas kunci, rental mobil harian, rental mobil bulanan, rental mobil bandara, rental mobil wisata, rental mobil terjangkau, rental mobil berkualitas, sewa mobil profesional, rental mobil online, booking rental mobil",
               "address": {
@@ -98,7 +98,7 @@ export default function RootLayout({
               "openingHoursSpecification": [
                 {
                   "@type": "OpeningHoursSpecification",
-                  "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                   "opens": "00:00",
                   "closes": "23:59"
                 }
@@ -114,12 +114,12 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "PJTrans",
-              "url": "https://pjtrans.co.id",
+              "url": "https://https://pjtransindonesia.com",
               "potentialAction": {
                 "@type": "SearchAction",
                 "target": {
                   "@type": "EntryPoint",
-                  "urlTemplate": "https://pjtrans.co.id?q={search_term_string}"
+                  "urlTemplate": "https://https://pjtransindonesia.com?q={search_term_string}"
                 },
                 "query-input": "required name=search_term_string"
               }
